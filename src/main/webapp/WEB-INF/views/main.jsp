@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CS WIKI</title>
-    <link href="${path}/resources/css/main.css" rel="stylesheet"/>
+    <link href="${path}/resources/css/main.css?hi" rel="stylesheet"/>
     <!-- viewport : 스마트폰 화면에서 실제 내용이 표시되는 영역
         width : 뷰포트 넓이
         initial-scale : 초기 확대/ 축소 값(1~10)
@@ -73,9 +73,9 @@
         <hr>
     </div>
     <div class="main-content">
-        <div class="main-content-items"><a href="doc_edit.jsp"><p>새문서 만들기</p></a></div>
-        <div class="main-content-items"><a href=''><p>문서 역사 보기</p></a></div>
-        <div class="main-content-items"><a href="doc.jsp"><p>문서 보기(랜덤)</p></a></div>
+        <div class="main-content-items"><a href='<c:url value='/doc/create'/>' role="button" class="btn btn-outline-info">새 문서 만들기</a></div>
+        <div class="main-content-items"><a href='<c:url value='/doc/list'/>' role="button" class="btn btn-outline-info">문서 역사 보기</a></div>
+        <div class="main-content-items"><a href='<c:url value='/doc/list'/>' role="button" class="btn btn-outline-info">문서 보기(랜덤)</a></div>
         <div class="main-content-items"><a href='<c:url value='/doc/list'/>' role="button" class="btn btn-outline-info">문서 목록 보기</a>
 	</div>
         <div class="main-content-items"><a href=""><p>규정</p></a></div>
