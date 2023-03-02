@@ -33,7 +33,6 @@ body{
     margin : 0 auto;
 }
 .main-nav{ 
-	position:fixed;
     display:flex;
     flex-direction:row;
     width:100%;
