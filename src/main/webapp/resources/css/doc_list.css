@@ -1,0 +1,177 @@
+@font-face{
+    font-family:'InterparkGothic'; /*font 이름*/
+    font-style: 'normal';
+    src: url("../font/InterparkGothicLight.ttf"); /* IE9 Compat Modes */
+}
+@font-face{
+    font-family:'InterparkGothicMedium'; /*font 이름*/
+    font-style: 'normal';
+    src: url("../font/InterparkGothicMedium.ttf"); /* IE9 Compat Modes */
+} 
+@font-face{
+    font-family:'InterparkGothicBold'; /*font 이름*/
+    font-style: 'normal';
+    src: url("../font/InterparkGothicBold.ttf"); /* IE9 Compat Modes */
+} 
+.body{
+    margin:0;
+    background-color:#efefef;
+}
+hr{
+    color:#cccccc;
+}
+/* 기본 해상도(QHD) */
+.pc{
+    font-family:'InterparkGothicMedium';
+    padding:0px;
+    margin:0px;
+    font-size: 20px;
+    background-color:#efefef;
+    /* display: none; 화면에서 안 보이고 공간도 차지하지 않음 */
+}   
+body{
+    margin : 0 auto;
+}
+.main-nav{ 
+    display:flex;
+    flex-direction:row;
+    width:100%;
+    height:40px;
+    margin:0 auto;
+    padding-left:0px;
+    background-color:skyblue;
+    list-style-type:none;
+    border-top:solid #cccccc 1px;
+    border-bottom:solid #cccccc 1px;
+}
+.main-nav-items{
+    padding-right:25px;
+    padding-left:25px;
+    cursor:pointer;
+}
+.main-nav-items:nth-child(n+2):nth-child(-n+4){
+    padding-top:10px;
+    font-size:20px;
+}
+.main-nav-items a{
+    text-align:center;
+    text-decoration:none;
+    color:white;
+}
+.search_area{
+    margin:0 auto;
+    position:relative;
+    top:0px;
+    left:707px;
+    height:40px;
+    width:400px;
+    background-color: black;
+}
+.search_text{
+    border:0;
+    position:relative;
+    width:470px;
+    height:40px;
+    background-color:white;
+    border-right:solid #cccccc 1px;
+    border-left:solid #cccccc 1px;
+}
+.search_icon{
+    border:0;
+    margin:0 auto;
+    margin-top:2px;
+    width:40px;
+    height:40px;
+    position:relative;
+    top:-42px;
+    left:467px;
+    padding:0;
+    background-color:white;
+    border-right:solid #cccccc 1px;
+    border-left:solid #cccccc 1px;
+}
+.search_icon_size{
+    border:0;
+    margin:0 auto;
+    width:38px;
+    height:38px;
+}
+.top-nav{
+    justify-content: flex-end;
+    display:flex;
+    position: relative;
+    left: -36px;
+    flex-direction:row;
+    width:100%;
+    margin : 0;
+    margin:0 auto;
+    padding:0;
+    list-style-type:none;
+    float:right;
+}
+.top-nav-items{
+    font-size:15px;
+    padding:5px;
+    cursor:pointer;
+    color:rgb(0, 0, 0);
+}
+.top-nav-items a{
+    text-align:center;
+    text-decoration:none;
+    color:rgb(0, 0, 0);
+}
+.aside1{
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    top:20px;
+    left: 983px;
+    width: 505px;
+    height: 1005px;
+    background-color: white;
+    border: solid #cccccc 1px;
+}
+
+.main_content {
+    display: inline-block;
+    position:relative;
+    top:-1007px;
+    left:480px;
+    padding:30px;
+    width:1400px;
+    height:1800px;
+    margin:0 auto;
+    background-color:white;
+    border-left: solid #cccccc 1px;
+    border-right: solid #cccccc 1px;
+}
+
+.content_inner{
+    height:auto;
+    margin:0 auto;
+}
+footer{
+    margin-top:40px;
+}
+
+.footer_inner{
+    position: relative;
+    text-align: center;
+}
+.footer_logo{
+    position:relative;
+    top:4px;
+    width:62px;
+    height:21px;
+    display:inline-block;
+    background : url("../img/logo_footer.png") 13px 1px no-repeat;
+}
+.footer_inner h1 span{
+    display:none;
+}
+.text, .corp{
+    font-size:14px;
+}
+.corp{
+    font-weight:bold;
+}
