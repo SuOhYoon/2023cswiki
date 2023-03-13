@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.cswiki.mappers.member">
+	<!-- 유저 전체 목록 -->
+	<select id="m_list" resultType="com.spring.cswiki.dto.MemberDTO">
+		select
+			u_id, p_id, email, name, reg_date
+		from user
+	</select>
+	
+	<!-- 회원 가입 -->
+	<insert id="join">
+		INSERT INTO user (u_id, p_id, email, name, pwd, reg_date) VALUES (#{u_id}, null, #{email}, #{name}, #{pwd}, sysdate())
+    </insert>
+    
+    <!-- 로그인  -->
+    <select id="login">
+    select name
+  	from user
+  	where u_id=#{u_id} and pwd=#{pwd}
+    </select>
+</mapper>

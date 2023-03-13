@@ -27,4 +27,19 @@ public class DocServiceImpl implements DocService {
 		dao.create(dto);		
 	}
 
+	@Override
+	public DocDTO doc(int d_num) {
+		// TODO Auto-generated method stub
+		return dao.doc(d_num);
+	}
+
+	@Override
+	public void edit(DocDTO dto) {
+		dao.edit(dto);		
+	}
+
+	@Override
+	public void delete(int d_num) {
+		dao.delete(d_num);		
+	}
 }

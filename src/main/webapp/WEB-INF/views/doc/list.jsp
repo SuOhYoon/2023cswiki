@@ -79,7 +79,7 @@
             <div class="selectbox">
             	<c:forEach items="${list}" var="list">
                 <ul>
-                    <li><a>${list.d_title}</a></li>
+                    <li><a href="${path}/doc/doc?d_num=${list.d_num}">${list.d_title}</a></li>
                 </ul> 
                 </c:forEach>         
             </div>

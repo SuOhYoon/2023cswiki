@@ -25,4 +25,20 @@ public class DocDAOImpl implements DocDAO {
 	public void create(DocDTO dto) {
 		sql.insert(namespace + ".create", dto);		
 	}
+
+	@Override
+	public DocDTO doc(int d_num) {
+		// TODO Auto-generated method stub
+		return sql.selectOne(namespace + ".doc", d_num);
+	}
+
+	@Override
+	public void edit(DocDTO dto) {
+		sql.update(namespace+".edit", dto);		
+	}
+
+	@Override
+	public void delete(int d_num) {
+		sql.delete(namespace+".delete", d_num);	
+	}
 }

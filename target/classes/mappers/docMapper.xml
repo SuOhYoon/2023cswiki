@@ -6,13 +6,32 @@
 	<!-- 문서 전체 목록 -->
 	<select id="list" resultType="com.spring.cswiki.dto.DocDTO">
 		select
-			d_title
+			d_num, d_title
 		from doc
 	</select>
 	
 	<!-- 새 문서 작성 -->
-	<insert id="create">
+	<insert id="create" useGeneratedKeys="true" keyProperty="d_num">
 		INSERT INTO doc (s_ca_num, up_perm, d_title, d_content, next, prev, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10)
 VALUES (null, null, #{d_title}, #{d_content}, null, null, null, null, null, null, null, null, null, null, null, null);
     </insert>
+    
+    <!-- 문서 상세정보 -->
+    <select id="doc" resultType="com.spring.cswiki.dto.DocDTO">
+    	select d_num, d_title, d_content from doc where d_num = #{d_num}
+    </select>
+    
+    <!-- 문서 편집 -->
+    <update id="edit">
+    	UPDATE doc
+    	SET d_title = #{d_title},
+    		d_content = #{d_content}
+    	WHERE d_num = #{d_num}
+    </update>
+    
+    <!-- 문서 삭제  -->
+    <delete id="delete">
+    	delete from doc
+    	where d_num = #{d_num}
+    </delete>
 </mapper>

@@ -21,9 +21,9 @@
 <body class="pc">
     <div>
         <ul class="top-nav" >
-            <li class="top-nav-items"><a href="login.jsp">로그인</a></li>
+            <li class="top-nav-items"><a href='<c:url value='/member/login'/>'>로그인</a></li>
             <li class="top-nav-items">|</li>
-            <li class="top-nav-items"><a href="join.jsp">회원가입</a></li>
+            <li class="top-nav-items"><a href='<c:url value='/member/join'/>'>회원가입</a></li>
         </ul>
     </div>
     <nav>
