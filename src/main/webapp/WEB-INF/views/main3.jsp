@@ -1,30 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="true" %>
+<%@ page session="false" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <html lang="ko">
     <head>
         <meta charset="utf-8"/>
         <title>CS위키</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?1" />
-        <link rel="stylesheet" href="${path}/resources/css/main.css?3">
+        <link rel="stylesheet" href="${path}/resources/css/main.css?1">
     </head>
     <body>
         <header id="header">
             <div class="center-align"> <!-- 가운데 정렬용 div -->
                 <div id="header-top">
-                    <c:choose>
-						<c:when test="${not empty sessionScope.member}">
-							<div>
-								<p>${member.name}님 환영합니다.</p>
-							
-							</div>
-						</c:when>
-						<c:otherwise>
-							<p>Beta 1.0</p>
-						</c:otherwise>
-					</c:choose>
+                    	추후 구현됩니다
                 </div>
                 <div id="header-search" style="clear:both">
                     <a href="${path}/">
@@ -68,7 +58,7 @@
 						<c:when test="${not empty sessionScope.member}">
 							<div>
 								<p>${member.name}님 환영합니다.</p>
-								<button id="logoutBtn" type="button" onclick="location.href='${path}/member/logout'"><a>로그아웃</a></button>
+								<button id="logoutBtn" type="button" onclick="location.href='${path}/member/logout'">로그아웃</button>
 							</div>
 						</c:when>
 						<c:otherwise>

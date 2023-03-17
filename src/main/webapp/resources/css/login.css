@@ -88,7 +88,7 @@ main, .main_inner{
     border:0;
 }
 
-#id, #pw{
+#u_id, #pwd{
     width:360px;
     height:60px;
     font-family:'InterparkGothic';
@@ -116,6 +116,12 @@ main, .main_inner{
     color:#ffffff;
 }
 
+#errormsg{
+    color:red;
+    position:relative;
+    top:-20px;
+}
+
 .find_wrap{
     position:relative;
     top:20px;
@@ -134,6 +140,7 @@ main, .main_inner{
     padding : 0px 4px 0px 4px;
     color:black;
     font-size:17px;
+    hover:skyblue;
 }
 footer{
     margin-top:40px;

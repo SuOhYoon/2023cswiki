@@ -3,6 +3,8 @@ package com.spring.cswiki.dao;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import com.spring.cswiki.dto.MemberDTO;
@@ -14,8 +16,8 @@ import com.spring.cswiki.dto.MemberDTO;
 	SqlSession sql; // SqlSession 의존관계 주입
 	
 	@Override
-	public String loginCheck(MemberDTO dto) {
-		return sql.selectOne(namespace + ".doc", dto);
+	public MemberDTO login(MemberDTO dto) throws Exception { 
+		return sql.selectOne(namespace + ".login", dto);
 	}
 
 	@Override
@@ -24,7 +26,13 @@ import com.spring.cswiki.dto.MemberDTO;
 	}
 
 	@Override
-	public void join(MemberDTO dto) {
+	public void join(MemberDTO dto) { 
 		sql.insert(namespace + ".join", dto);		
+	}
+
+	@Override
+	public void logout(HttpSession session) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 }

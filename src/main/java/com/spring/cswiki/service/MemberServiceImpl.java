@@ -10,23 +10,14 @@ import com.spring.cswiki.dto.MemberDTO;
 public class MemberServiceImpl implements MemberService {
 	@Inject
 	MemberDAO dao;
-	@Override
-	public String login(MemberDTO dto, HttpSession session) {
-		String name = dao.loginCheck(dto);
-		 if (name != null) { // 세션 변수 저장
-		  session.setAttribute("u_id", dto.getU_id());
-		  session.setAttribute("name", name);
-		}
-		 return name; 
-	}
 
 	@Override
-	public void logout(HttpSession session) {
-		session.invalidate(); // 세션 초기화
-	}
-
-	@Override
-	public void join(MemberDTO dto) {
+	public void join(MemberDTO dto) throws Exception {
 		dao.join(dto);				
+	}
+
+	@Override
+	public MemberDTO login(MemberDTO dto) throws Exception {
+		return dao.login(dto);
 	}
 }

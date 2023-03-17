@@ -2,10 +2,13 @@ package com.spring.cswiki.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.spring.cswiki.dto.MemberDTO;
 
 public interface MemberDAO {
-	public String loginCheck(MemberDTO dto);
+	public MemberDTO login(MemberDTO dto) throws Exception; // 로그인 처리
 	public List<MemberDTO> list(); //회원 목록 조회
-	public void join(MemberDTO dto); //새 문서 작성
+	public void join(MemberDTO dto) throws Exception; // 회원가입
+	public void logout(HttpSession session) throws Exception;
 }

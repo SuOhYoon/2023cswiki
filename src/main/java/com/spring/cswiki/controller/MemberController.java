@@ -3,12 +3,20 @@ package com.spring.cswiki.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import java.io.PrintWriter;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.cswiki.dto.MemberDTO;
 import com.spring.cswiki.dao.MemberDAO;
@@ -18,6 +26,7 @@ import com.spring.cswiki.service.MemberService;
 @RequestMapping("/member/*")
 
 public class MemberController {
+	private final Logger LOG = LoggerFactory.getLogger(MemberController.class.getName());
 	@Inject
 	private MemberService service;
 	   
@@ -41,13 +50,30 @@ public class MemberController {
     }
     
     // 로그인 처리, 값이 일치하면 로그인 수행 후 메인 페이지로 이동, 일치하지 않으면 다시 로그인 페이지로 이동
-    @RequestMapping(value="/login", method = RequestMethod.GET)
-    public String postlogin(MemberDTO dto, HttpSession session) throws Exception{
-    	String name = service.login(dto, session);
-    	if (name!= null) {
-    		return "redirect/";
-    	} else {
-    		return "member/login";
-    	}
+    @RequestMapping(value="/loginProcess", method = RequestMethod.POST)
+    public String login(MemberDTO dto, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
+    	LOG.info("post login");
+		
+        HttpSession session = req.getSession();
+        MemberDTO login = service.login(dto);
+    		
+        if(login == null) {
+            session.setAttribute("member", null);
+            rttr.addFlashAttribute("msg", false);
+            LOG.info("로그인 실패......");
+            return "member/login";
+        } else {
+            LOG.info("로그인 성공!");
+            session.setAttribute("member", login);
+        }
+        return "redirect:/";
     }
+    
+    // 로그아웃 처리
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logout(HttpSession session) throws Exception{
+		session.invalidate();
+		LOG.info("로그아웃 성공!");
+		return "redirect:/";
+	}
 }

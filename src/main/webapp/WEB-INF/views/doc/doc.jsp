@@ -1,98 +1,83 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <html lang="ko">
-<head>  
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS WIKI</title>
-    <link href="${path}/resources/css/doc.css?hi" rel="stylesheet"/>
-    <!-- viewport : 스마트폰 화면에서 실제 내용이 표시되는 영역
-        width : 뷰포트 넓이
-        initial-scale : 초기 확대/ 축소 값(1~10)
-        user-scalable : 확대 축소 가능 여부
-    -->
-    <title>Document</title>
-    
-    <!-- 미디어가 print이고 별도 css로 작성한 경우 연결 방법 -->
-</head>
-<body class="pc">
-    <div>
-        <ul class="top-nav" >
-            <li class="top-nav-items"><a href="login.jsp">로그인</a></li>
-            <li class="top-nav-items">|</li>
-            <li class="top-nav-items"><a href="join.jsp">회원가입</a></li>
-        </ul>
-    </div>
-    <nav>
-        <ul class="main-nav">
-            <li class="main-nav-items"><a href="main.jsp"><img class="logo" src="${path}/resources/img/logo.png"></a></li>
-            <li class="main-nav-items"><a href="">분류보기</a></li>
-            <li class="main-nav-items"><a href="">신고</a></li>
-            <li class="main-nav-items"><a href="">특수기능</a></li>
-            <form class="search_area" action="doc.jsp" method="post">
-                <input class="search_text" type="search" placeholder="검색어를 입력해주세요.">
-                <button class="search_icon" type="submit" style="cursor:pointer"><img class="search_icon_size" src="${path}/resources/img/search.png"></button>
-            </form>
-        </ul> 
-    </nav>
-    <div class="aside1">
-        <h3>최근 변경된 문서</h3>
-        <hr>
-        변경내용
-        <hr>
-        변경내용
-        <hr>
-        변경내용
-        <hr>
-        변경내용
-        <hr>
-        변경내용
-        <hr>
-        변경내용
-        <hr>
-        변경내용
-        <hr>
-        변경내용
-        <hr>
-        변경내용
-        <hr>
-        변경내용
-        <hr>
-        변경내용
-        <hr>
-        변경내용
-        <hr>
-        변경내용
-        <hr>
-        변경내용
-        <hr>
-        변경내용
-        <hr>
-    </div>
-    <div class="main_content">
-        <div class="content_inner">
-            <span class="title">${doc.d_title}</span>
-            <div class="selectbox">
-                <ul>
-                    <li><a>★</a></li>
-                    <li><a href="${path}/doc/edit?d_num=${doc.d_num}">편집</a></li>
-                    <li><a>역사</a></li>
-                    <li><a>ACL</a></li>
-                    <li><a href="${path}/doc/delete?d_num=${doc.d_num}">삭제</a></li>
-                </ul>          
+    <head>
+        <meta charset="utf-8"/>
+        <title>CS위키</title>
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?1" />
+        <link rel="stylesheet" href="${path}/resources/css/doc.css?3">
+    </head>
+    <body>
+        <header id="header">
+            <div class="center-align"> <!-- 가운데 정렬용 div -->
+                <div id="header-top">
+                    <span>관리자님 | 로그아웃 | 사용자 정보</span>
+                </div>
+                <div id="header-search" style="clear:both">
+                    <a href="${path}/">
+                        <h1>
+                            <span>CS위키</span>
+                        </h1>
+                    </a>
+                    <h2 class="blind">검색창</h2>
+                    <fieldset>
+                        <legend class="blind">검색</legend>
+                        <input />
+                        <button>
+                            <span class="blind">검색</span>
+                            <span id="search-image"></span>
+                        </button>
+                    </fieldset>
+                </div>
             </div>
-            <div class="content">
-                ${doc.d_content}
+        </header>
+        <nav>
+            <div class="center-align relative">
+                <ul> <!-- unordered list --> <!-- ol 태그도 있어요 ordered list -->
+                  <li><a href='<c:url value='/doc/create'/>'>문서 만들기</a></li> <!-- list item -->
+                  <li><a href='<c:url value='/doc/list'/>'>문서 목록</a></li> <!-- list item -->
+                  <li><a href="">게시판</a></li> <!-- list item -->
+                  <li><a href="">도움말</a></li> <!-- list item -->
+                  <li><a href="">특수기능</a></li> <!-- list item -->
+                </ul>
             </div>
+        </nav>
+        <main>
+            <div id="doc">
+		        <div class="doc_inner">
+		        <span class="title">${doc.d_title}</span>
+		        <div class="selectbox">
+	                <ul>
+	                    <li><a>★</a></li>
+	                    <li><a href="${path}/doc/edit?d_num=${doc.d_num}">편집</a></li>
+	                    <li><a>역사</a></li>
+	                    <li><a>ACL</a></li>
+	                    <li><a href="${path}/doc/delete?d_num=${doc.d_num}">삭제</a></li>
+	                </ul>          
+		       </div>
+		       <div class="content">
+		       		${doc.d_content}
+		       </div>
         </div>
     </div>
-    <footer class="footer">
+        </main>
+        <footer class="footer">
         <hr>
-        대표자 : 윤수오 | TEL : 032-XXX-XXXX | 사업장 주소 : 경기 부천시 소사로 56<br>
-        Copyrightⓒ2023.CSWIKI.ALL RIGHTS RESERVED. Version : Pre-A-0.0.1
+        <div class="footer_inner">
+        	<div>본 위키는 CC-BY-NC-SA 2.0 KR을 이용합니다. 기여하신 문서의 각 부분의 저작권은 기여자님이 갖습니다.</div>
+            <div>Creators | front : S O Yoon | back : H C Han</div>
+            <a href="${path}/" class="footer_logo">
+                <h1>
+                    <span>CS위키</span>
+                </h1>
+            </a>
+        <span class="text">Copyright ©</span>
+        <span class="corp">CSWIKI Corp.</span>
+        <span class="text">All Rights Reserved.</span>
+    </div>
     </footer>
-</body>
+    </body>
 </html>
