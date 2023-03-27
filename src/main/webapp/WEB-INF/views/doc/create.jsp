@@ -1,13 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="false" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>새 문서 작성</title>
-	<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+	<script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 </head>
 <body>
 	<h1>새 문서 작성</h1>
@@ -19,7 +20,9 @@
 	    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
  	 </form>	
 	<script>
-    CKEDITOR.replace('editor');
+    CKEDITOR.replace('editor', {
+    	filebrowserUploadUrl : '${path}/doc/ckUpload'
+    });
   	</script>
 </body>
 </html>
