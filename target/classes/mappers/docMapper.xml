@@ -12,8 +12,16 @@
 	
 	<!-- 새 문서 작성 -->
 	<insert id="create" useGeneratedKeys="true" keyProperty="d_num">
-		INSERT INTO doc (s_ca_num, up_perm, d_title, d_content, next, prev, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10)
-VALUES (null, null, #{d_title}, #{d_content}, null, null, null, null, null, null, null, null, null, null, null, null);
+		INSERT INTO doc (s_ca_num, up_perm, d_title, d_content, next, prev)
+VALUES (null, null, #{d_title}, #{d_content}, null, null);
+    </insert>
+    
+    <!-- 새 문서 작성 시 역사 생성 -->
+	<insert id="createhistory" useGeneratedKeys="true" keyProperty="d_num">
+		INSERT INTO doc_history (d_version, d_num, d_date, d_time)
+		SELECT 1, d_num, CURDATE(), CURTIME()
+		FROM doc
+		WHERE d_title = 'C';
     </insert>
     
     <!-- 문서 상세정보 -->
@@ -28,6 +36,14 @@ VALUES (null, null, #{d_title}, #{d_content}, null, null, null, null, null, null
     		d_content = #{d_content}
     	WHERE d_num = #{d_num}
     </update>
+    
+    <!-- 문서 편집시 역사 업데이트 -->
+    <insert id="edithistory">
+    	INSERT INTO doc_history (d_version, d_num, d_date, d_time)
+		SELECT COALESCE(MAX(d_version), 0) + 1, d_num, CURDATE(), CURTIME()
+		FROM doc_history
+		WHERE d_num = (SELECT d_num FROM doc WHERE d_title = 'C++');
+    </insert>
     
     <!-- 문서 삭제  -->
     <delete id="delete">
