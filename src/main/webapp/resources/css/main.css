@@ -102,7 +102,7 @@ header{
     border: 2px solid skyblue;
     vertical-align: middle;
     position:relative;
-    left:1px;
+    left:50px;
 }
 
 #header-search fieldset input{

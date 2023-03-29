@@ -12,13 +12,26 @@
 	
 	<!-- 회원 가입 -->
 	<insert id="join">
-		INSERT INTO user (u_id, p_id, email, name, pwd, reg_date) VALUES (#{u_id}, null, #{email}, #{name}, #{pwd}, sysdate())
+		INSERT INTO user (u_id, p_id, email, name, pwd, reg_date) VALUES (#{u_id}, 1, #{email}, #{name}, #{pwd}, sysdate())
     </insert>
     
     <!-- 로그인  -->
     <select id="login" resultType="com.spring.cswiki.dto.MemberDTO">
-	    select u_id, pwd, name
+	    select u_id, pwd, name, p_id
 	  	from user
 	  	where u_id=#{u_id} and pwd=#{pwd}
     </select>
+    
+    <!-- 회원 권한 수정 -->
+    <update id="grant">
+    	UPDATE user
+    	SET p_id = #{p_id}
+    	where u_id=#{u_id}
+    </update>
+    
+    <!-- 회원 탈퇴/강제 탈퇴 -->
+    <delete id="remove">
+    	DELETE from user
+    	where u_id=#{u_id}
+    </delete>
 </mapper>

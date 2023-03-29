@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.spring.cswiki.dao.DocDAO;
-import com.spring.cswiki.dto.DocDTO;
 
 @Service
 public class DocServiceImpl implements DocService {

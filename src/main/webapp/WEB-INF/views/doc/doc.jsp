@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <html lang="ko">
     <head>
@@ -54,7 +54,16 @@
 	                    <li><a>★</a></li>
 	                    <li><a href="${path}/doc/edit?d_num=${doc.d_num}">편집</a></li>
 	                    <li><a>역사</a></li>
-	                    <li><a>ACL</a></li>
+	                    <li>
+	                    	<c:choose>
+								<c:when test="${member.p_id eq 2}">
+									<a href="${path}/doc/acl?d_num=${doc.d_num}">ACL</a>
+								</c:when>
+							<c:otherwise>
+								<a>ACL</a>
+							</c:otherwise>
+						</c:choose>
+	                    </li>
 	                    <li><a href="${path}/doc/delete?d_num=${doc.d_num}">삭제</a></li>
 	                </ul>          
 		       </div>

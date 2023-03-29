@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MemberDTO {
 	private String u_id;
-	private String p_id;
+	private int p_id;
 	private String email;
 	private String name;
 	private String pwd;
@@ -16,10 +16,10 @@ public class MemberDTO {
 	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
-	public String getP_id() {
+	public int getP_id() {
 		return p_id;
 	}
-	public void setP_id(String p_id) {
+	public void setP_id(int p_id) {
 		this.p_id = p_id;
 	}
 	public String getEmail() {

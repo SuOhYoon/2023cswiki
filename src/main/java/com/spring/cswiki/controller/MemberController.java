@@ -6,20 +6,14 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import java.io.PrintWriter;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.cswiki.dto.MemberDTO;
-import com.spring.cswiki.dao.MemberDAO;
 import com.spring.cswiki.service.MemberService;
 
 @Controller
@@ -59,12 +53,14 @@ public class MemberController {
     		
         if(login == null) {
             session.setAttribute("member", null);
+            session.setAttribute("p_id", null);
             rttr.addFlashAttribute("msg", false);
             LOG.info("로그인 실패......");
             return "member/login";
         } else {
             LOG.info("로그인 성공!");
             session.setAttribute("member", login);
+            session.setAttribute("p_id", login);
         }
         return "redirect:/";
     }

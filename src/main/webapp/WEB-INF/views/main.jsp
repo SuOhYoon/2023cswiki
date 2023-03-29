@@ -8,7 +8,7 @@
         <meta charset="utf-8"/>
         <title>CS위키</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?1" />
-        <link rel="stylesheet" href="${path}/resources/css/main.css?3">
+        <link rel="stylesheet" href="${path}/resources/css/main.css?4">
     </head>
     <body>
         <header id="header">
@@ -68,6 +68,9 @@
 							<div>
 								<p>${member.name}님 환영합니다.</p>
 								<button id="logoutBtn" type="button" onclick="location.href='${path}/member/logout'"><a>로그아웃</a></button>
+								<c:if test="${member.p_id eq 2}" >
+										관리자 메뉴 접속
+								</c:if>
 							</div>
 						</c:when>
 						<c:otherwise>

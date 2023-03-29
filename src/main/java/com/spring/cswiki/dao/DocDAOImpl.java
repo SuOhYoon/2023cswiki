@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.spring.cswiki.dto.DocDTO;
 
 @Repository
 public class DocDAOImpl implements DocDAO {
@@ -40,5 +39,23 @@ public class DocDAOImpl implements DocDAO {
 	@Override
 	public void delete(int d_num) {
 		sql.delete(namespace+".delete", d_num);	
+	}
+
+	@Override
+	public void aclinsert(DocDTO dto) {
+		sql.insert(namespace + ".create", dto);	
+		
+	}
+
+	@Override
+	public void aclupdate(int d_num) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void acldelete(int d_num) {
+		// TODO Auto-generated method stub
+		
 	}
 }

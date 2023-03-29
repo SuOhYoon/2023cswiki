@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>ACL 설정</title>
+        <link rel="stylesheet" type="text/css" href = "${path}/resources/css/acl.css">
+    </head>
+    <body>
+        <div id="header">
+            <h2>ACL</h2>
+        </div>
+        <div id="main">
+           <form class="aclgroup">
+            읽기 권한 :
+                <select name="p_read">
+                    <option value="1">회원</option>
+                    <option value="2">관리자</option>
+                    <option value="3">개발자</option>
+                </select>
+                <button type="submit" id="p_read">
+                    <span class="btn_text">설정</span>
+                </button>
+           </form>
+           <form class="aclgroup">
+            수정 권한 :
+                <select name="p_update">
+                    <option value="1">회원</option>
+                    <option value="2">관리자</option>
+                    <option value="3">개발자</option>
+                </select>
+                <button type="submit" id="p_update">
+                    <span class="btn_text">설정</span>
+                </button>
+           </form>
+           <form class="aclgroup">
+            삭제 권한 :
+                <select name="p_delete">
+                    <option value="1">회원</option>
+                    <option value="2">관리자</option>
+                    <option value="3">개발자</option>
+                </select>
+                <button type="submit" id="p_delete">
+                    <span class="btn_text">설정</span>
+                </button>
+            </form>
+        </div>
+    </body>
+</html>

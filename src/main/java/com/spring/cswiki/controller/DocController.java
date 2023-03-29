@@ -143,4 +143,10 @@ public class DocController {
     	service.delete(d_num);
     	return "redirect:list";
     }
+    
+    // 문서 ACL 조정 페이지 이동(관리자 전용)
+    @RequestMapping(value="/acl", method=RequestMethod.GET)
+    public String getacl() throws Exception{
+    	return "doc/acl";
+    }
 }

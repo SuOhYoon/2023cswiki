@@ -12,8 +12,8 @@
 	
 	<!-- 새 문서 작성 -->
 	<insert id="create" useGeneratedKeys="true" keyProperty="d_num">
-		INSERT INTO doc (s_ca_num, up_perm, d_title, d_content, next, prev)
-VALUES (null, null, #{d_title}, #{d_content}, null, null);
+		INSERT INTO doc (s_ca_num, p_read, p_insert, p_update, p_delete, d_title, d_content, next, prev)
+VALUES (null, null, 1, 1, 1, #{d_title}, #{d_content}, null, null);
     </insert>
     
     <!-- 새 문서 작성 시 역사 생성 -->
@@ -34,6 +34,16 @@ VALUES (null, null, #{d_title}, #{d_content}, null, null);
     	UPDATE doc
     	SET d_title = #{d_title},
     		d_content = #{d_content}
+    	WHERE d_num = #{d_num}
+    </update>
+    
+    <!-- 문서 접근 권한 설정 -->
+    <update id="doc_grant">
+    	UPDATE doc
+    	SET p_read = #{p_read},
+    		p_insert = #{p_insert},
+    		p_update = #{p_update},
+    		p_delete = #{p_delete}
     	WHERE d_num = #{d_num}
     </update>
     
