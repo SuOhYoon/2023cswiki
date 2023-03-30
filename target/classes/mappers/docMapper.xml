@@ -13,7 +13,7 @@
 	<!-- 새 문서 작성 -->
 	<insert id="create" useGeneratedKeys="true" keyProperty="d_num">
 		INSERT INTO doc (s_ca_num, p_read, p_insert, p_update, p_delete, d_title, d_content, next, prev)
-VALUES (null, null, 1, 1, 1, #{d_title}, #{d_content}, null, null);
+VALUES (null, 1, 2, 2, 2, #{d_title}, #{d_content}, null, null);
     </insert>
     
     <!-- 새 문서 작성 시 역사 생성 -->
@@ -26,7 +26,7 @@ VALUES (null, null, 1, 1, 1, #{d_title}, #{d_content}, null, null);
     
     <!-- 문서 상세정보 -->
     <select id="doc" resultType="com.spring.cswiki.dto.DocDTO">
-    	select d_num, d_title, d_content from doc where d_num = #{d_num}
+    	select d_num, d_title, d_content, p_read, p_update 	 from doc where d_num = #{d_num}
     </select>
     
     <!-- 문서 편집 -->
@@ -37,15 +37,15 @@ VALUES (null, null, 1, 1, 1, #{d_title}, #{d_content}, null, null);
     	WHERE d_num = #{d_num}
     </update>
     
-    <!-- 문서 접근 권한 설정 -->
-    <update id="doc_grant">
+    <!-- 문서 접근 권한 수정 -->
+    <update id="aclupdate">
     	UPDATE doc
-    	SET p_read = #{p_read},
-    		p_insert = #{p_insert},
-    		p_update = #{p_update},
-    		p_delete = #{p_delete}
+    	SET p_read = #{p_read}
+    	    p_update = #{p_update}
+    	    p_delete = #{p_delete}   	      	
     	WHERE d_num = #{d_num}
     </update>
+    
     
     <!-- 문서 편집시 역사 업데이트 -->
     <insert id="edithistory">

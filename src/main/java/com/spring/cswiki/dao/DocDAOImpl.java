@@ -48,8 +48,8 @@ public class DocDAOImpl implements DocDAO {
 	}
 
 	@Override
-	public void aclupdate(int d_num) {
-		// TODO Auto-generated method stub
+	public void aclupdate(DocDTO dto) {
+		sql.update(namespace+".aclupdate", dto);
 		
 	}
 

@@ -52,23 +52,40 @@
 		        <div class="selectbox">
 	                <ul>
 	                    <li><a>★</a></li>
-	                    <li><a href="${path}/doc/edit?d_num=${doc.d_num}">편집</a></li>
+	                    <li>
+						    <a href="${path}/doc/edit?d_num=${doc.d_num}">편집</a>
+	                    </li>
 	                    <li><a>역사</a></li>
 	                    <li>
-	                    	<c:choose>
-								<c:when test="${member.p_id eq 2}">
-									<a href="${path}/doc/acl?d_num=${doc.d_num}">ACL</a>
-								</c:when>
-							<c:otherwise>
-								<a>ACL</a>
-							</c:otherwise>
-						</c:choose>
+							<a href="${path}/doc/acl?d_num=${doc.d_num}">ACL</a>
 	                    </li>
-	                    <li><a href="${path}/doc/delete?d_num=${doc.d_num}">삭제</a></li>
+	                    <li>
+		                    <c:choose>
+								<c:when test= "${member.p_id eq 0}">
+									삭제
+								</c:when>
+								<c:when test= "${member.p_id >= doc.p_update}">
+									<a href="${path}/doc/delete?d_num=${doc.d_num}">삭제</a>
+								</c:when>
+								<c:otherwise>
+									삭제
+								</c:otherwise>
+							</c:choose>
+	                    </li>
 	                </ul>          
 		       </div>
 		       <div class="content">
-		       		${doc.d_content}
+		       	<c:choose>
+		       		<c:when test="${doc.p_read eq 0}">
+		       			${doc.d_content}
+		       		</c:when>
+		       		<c:when test="${member.p_id >= doc.p_read }">
+		       			${doc.d_content}
+		       		</c:when>
+		       		<c:otherwise>
+		       			읽기 권한이 없습니다!
+		       		</c:otherwise>
+		       	</c:choose>
 		       </div>
         </div>
     </div>

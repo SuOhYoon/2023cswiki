@@ -41,4 +41,16 @@ public class DocServiceImpl implements DocService {
 	public void delete(int d_num) {
 		dao.delete(d_num);		
 	}
+
+	@Override
+	public void aclinsert(DocDTO dto) {
+		dao.aclinsert(dto);
+		
+	}
+
+	@Override
+	public void aclupdate(DocDTO dto) {
+		dao.aclupdate(dto);
+		
+	}
 }

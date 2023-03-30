@@ -116,6 +116,12 @@ main, .main_inner{
     color:#ffffff;
 }
 
+#console{
+	width:auto;
+	height:20px;
+	position:absolute;
+	top:-20px;
+}
 #errormsg{
     color:red;
     position:relative;

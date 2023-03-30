@@ -1,4 +1,6 @@
 package com.spring.cswiki.service;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
@@ -19,5 +21,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberDTO login(MemberDTO dto) throws Exception {
 		return dao.login(dto);
+	}
+
+	@Override
+	public List<MemberDTO> list() {
+		return dao.list();
 	}
 }

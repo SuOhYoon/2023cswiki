@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -72,4 +73,18 @@ public class MemberController {
 		LOG.info("로그아웃 성공!");
 		return "redirect:/";
 	}
+    
+    // 관리자 메인 페이지로 이동
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String getcreate() throws Exception {
+       return "member/admin";
+    }
+    
+    // 회원 목록으로 이동
+ 	@RequestMapping(value="/memberlist", method=RequestMethod.GET) //url mapping
+     public String getList(Model model) throws Exception{
+ 		List<MemberDTO> list = service.list();
+ 		model.addAttribute("list", list);		
+ 		return "member/memberlist";
+     }
 }

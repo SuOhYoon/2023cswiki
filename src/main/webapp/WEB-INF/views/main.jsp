@@ -44,15 +44,30 @@
             </div>
         </header>
         <nav>
-            <div class="center-align relative">
-                <ul> <!-- unordered list --> <!-- ol 태그도 있어요 ordered list -->
-                  <li><a href='<c:url value='/doc/create'/>'>문서 만들기</a></li> <!-- list item -->
-                  <li><a href='<c:url value='/doc/list'/>'>문서 목록</a></li> <!-- list item -->
-                  <li><a href="">게시판</a></li> <!-- list item -->
-                  <li><a href="">도움말</a></li> <!-- list item -->
-                  <li><a href="">특수기능</a></li> <!-- list item -->
-                </ul>
-            </div>
+        	<c:choose>
+        		<c:when test="${member.p_id >= 3}">
+        			<div class="center-align relative">
+		                <ul> <!-- unordered list --> <!-- ol 태그도 있어요 ordered list -->
+		                  <li><a href='<c:url value='/doc/create'/>'>문서 만들기</a></li> <!-- list item -->
+		                  <li><a href='<c:url value='/doc/list'/>'>문서 목록</a></li> <!-- list item -->
+		                  <li><a href="">게시판</a></li> <!-- list item -->
+		                  <li><a href="">도움말</a></li> <!-- list item -->
+		                  <li><a href='<c:url value='/member/admin'/>'>관리</a></li> <!-- list item -->
+		                </ul>
+		            </div>
+        		</c:when>
+        		<c:otherwise>
+        			<div class="center-align relative">
+		                <ul> <!-- unordered list --> <!-- ol 태그도 있어요 ordered list -->
+		                  <li><a href='<c:url value='/doc/create'/>'>문서 만들기</a></li> <!-- list item -->
+		                  <li><a href='<c:url value='/doc/list'/>'>문서 목록</a></li> <!-- list item -->
+		                  <li><a href="">게시판</a></li> <!-- list item -->
+		                  <li><a href="">도움말</a></li> <!-- list item -->
+		                </ul>
+		            </div>
+        		</c:otherwise>
+        	</c:choose>
+            
         </nav>
         <main>
             <div id="welcome">
@@ -68,9 +83,6 @@
 							<div>
 								<p>${member.name}님 환영합니다.</p>
 								<button id="logoutBtn" type="button" onclick="location.href='${path}/member/logout'"><a>로그아웃</a></button>
-								<c:if test="${member.p_id eq 2}" >
-										관리자 메뉴 접속
-								</c:if>
 							</div>
 						</c:when>
 						<c:otherwise>

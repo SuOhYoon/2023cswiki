@@ -149,4 +149,11 @@ public class DocController {
     public String getacl() throws Exception{
     	return "doc/acl";
     }
+    
+    // 문서 ACL 수정 및 ACL화면 출력
+    @RequestMapping(value="/aclupdate", method=RequestMethod.POST)
+    public String postaclupdate(DocDTO dto) throws Exception{
+    	service.aclupdate(dto);
+    	return "redirect:doc/doc";
+    }
 }

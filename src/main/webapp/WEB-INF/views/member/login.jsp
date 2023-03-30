@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CS WIKI : 로그인</title>
-        <link rel="stylesheet" type="text/css" href = "${path}/resources/css/login.css?2">
+        <link rel="stylesheet" type="text/css" href = "${path}/resources/css/login.css?4">
     </head>
     <body class="pc"> 
         <header>
@@ -36,11 +36,13 @@
                             <button type="submit"class="btn_login" id="btnLogin">
                                 <span class="btn_text">로그인</span>
                             </button>
-                            <c:if test="${message == 'error'}">
-								<div id="errormsg"> 
-								 	아이디 또는 비밀번호가 일치하지 않습니다.
-								</div>
-							</c:if>
+                            <div id="console"> 
+								<c:if test="${message == 'error'}">
+									<div id="errormsg"> 
+									 	아이디 또는 비밀번호가 일치하지 않습니다.
+									</div>
+								</c:if>
+							</div>
                         </div>
                     </form>
                 </div>

@@ -10,4 +10,6 @@ public interface DocService {
 	public DocDTO doc(int d_num);
 	public void edit(DocDTO dto);
 	public void delete(int d_num);
+	public void aclinsert(DocDTO dto);
+	public void aclupdate(DocDTO dto);
 }
