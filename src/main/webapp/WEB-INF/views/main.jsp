@@ -11,6 +11,13 @@
         <link rel="stylesheet" href="${path}/resources/css/main.css?4">
     </head>
     <body>
+	    <script>
+		 document.getElementById("searchBtn").onclick = function () {
+			 let keyword =  document.getElementsByName("title")[0].value;
+			 console.log(title)
+			 location.href = "/doc/search" + "&title=" + title;
+		 };
+		</script>
         <header id="header">
             <div class="center-align"> <!-- 가운데 정렬용 div -->
                 <div id="header-top">
@@ -34,8 +41,8 @@
                     <h2 class="blind">검색창</h2>
                     <fieldset>
                         <legend class="blind">검색</legend>
-                        <input />
-                        <button>
+                        <input type="text" name="d_title" />
+                        <button type="button" id="searchBtn">
                             <span class="blind">검색</span>
                             <span id="search-image"></span>
                         </button>

@@ -26,7 +26,7 @@ VALUES (null, 1, 2, 2, 2, #{d_title}, #{d_content}, null, null);
     
     <!-- 문서 상세정보 -->
     <select id="doc" resultType="com.spring.cswiki.dto.DocDTO">
-    	select d_num, d_title, d_content, p_read, p_update 	 from doc where d_num = #{d_num}
+    	select d_num, d_title, d_content, p_read, p_update from doc where d_num = #{d_num}
     </select>
     
     <!-- 문서 편집 -->
@@ -36,16 +36,24 @@ VALUES (null, 1, 2, 2, 2, #{d_title}, #{d_content}, null, null);
     		d_content = #{d_content}
     	WHERE d_num = #{d_num}
     </update>
-    
-    <!-- 문서 접근 권한 수정 -->
-    <update id="aclupdate">
+
+    <!-- ACL 삽입/수정 -->
+    <update id="acl">
     	UPDATE doc
-    	SET p_read = #{p_read}
-    	    p_update = #{p_update}
+    	SET p_read = #{p_read},
+    	    p_update = #{p_update},
     	    p_delete = #{p_delete}   	      	
     	WHERE d_num = #{d_num}
     </update>
     
+    <!-- ACL 초기화-->
+    <update id="aclwipe">
+    UPDATE doc
+   	SET p_read = 1
+   	    p_update = 2
+   	    p_delete = 2 	      	
+   	WHERE d_num = #{d_num}
+    </update>
     
     <!-- 문서 편집시 역사 업데이트 -->
     <insert id="edithistory">
@@ -60,4 +68,10 @@ VALUES (null, 1, 2, 2, 2, #{d_title}, #{d_content}, null, null);
     	delete from doc
     	where d_num = #{d_num}
     </delete>
+    
+    <!-- 문서 검색 -->
+    <select id="search" resultType="com.spring.cswiki.dto.DocDTO">
+    	select * from doc where d_title like concat('%', #{d_title}, '%')
+    	order by d_num desc
+    </select>
 </mapper>

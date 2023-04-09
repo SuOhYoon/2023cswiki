@@ -43,14 +43,22 @@ public class DocServiceImpl implements DocService {
 	}
 
 	@Override
-	public void aclinsert(DocDTO dto) {
-		dao.aclinsert(dto);
+	public void acl(DocDTO dto) {
+		dao.acl(dto);
 		
+	}
+	
+	@Override
+	public void aclwipe(DocDTO dto) {
+		dao.aclwipe(dto);
+		
+	}
+	
+	@Override
+	public List<DocDTO> search(String d_title, int d_num) {
+		// TODO Auto-generated method stub
+		return dao.search(d_title, d_num);
 	}
 
-	@Override
-	public void aclupdate(DocDTO dto) {
-		dao.aclupdate(dto);
-		
-	}
+	
 }
