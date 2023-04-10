@@ -44,8 +44,7 @@ public class DocServiceImpl implements DocService {
 
 	@Override
 	public void acl(DocDTO dto) {
-		dao.acl(dto);
-		
+		dao.acl(dto);	
 	}
 	
 	@Override
