@@ -15,29 +15,37 @@
         <div id="main">
         <c:choose>
         	<c:when test="${member.p_id >= 3}">
-        		<form class="aclgroup" method="POST" action="${path}/doc/doc?d_num=${doc.d_num}/aclupdate">
-            읽기 권한 :
+        		<form name="acl" class="aclgroup" method="POST" action="${path}/doc/acl?d_num=${doc.d_num}">
+            	읽기 권한 :
                 <select name="p_read">
-                    <option value="1">회원</option>
-                    <option value="2">관리자</option>
-                    <option value="3">개발자</option>
+                	<option value="1">아무나</option>
+                    <option value="2">회원</option>
+                    <option value="3">관리자</option>
+                    <option value="4">개발자</option>
                 </select>
-            수정 권한 :
+            	수정 권한 :
                 <select name="p_update">
-                    <option value="1">회원</option>
-                    <option value="2">관리자</option>
-                    <option value="3">개발자</option>
+                    <option value="1">아무나</option>
+                    <option value="2">회원</option>
+                    <option value="3">관리자</option>
+                    <option value="4">개발자</option>
                 </select>
-            삭제 권한 :
+            	삭제 권한 :
                 <select name="p_delete">
-                    <option value="1">회원</option>
-                    <option value="2">관리자</option>
-                    <option value="3">개발자</option>
+                	<option value="1">아무나</option>
+                    <option value="2">회원</option>
+                    <option value="3">관리자</option>
+                    <option value="4">개발자</option>
                 </select>
                 <button type="submit" id="aclupdate">
                     <span class="btn_text">설정</span> 
                 </button>
            </form>
+     			읽기 권한 : 아무나
+        		<br>
+        		수정 권한 : 아무나
+        		<br>
+        		삭제 권한 : 아무나
         	</c:when>
         	<c:otherwise>
         		읽기 권한 : 아무나

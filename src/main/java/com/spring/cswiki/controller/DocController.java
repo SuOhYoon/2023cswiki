@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.cswiki.dto.DocDTO;
 import com.spring.cswiki.dao.DocDAO;
@@ -116,7 +117,7 @@ public class DocController {
     
     // 문서 본문으로 이동
     @RequestMapping(value = "/doc", method = RequestMethod.GET)
-    public String getdoc(Model model, int d_num) throws Exception {
+    public String getdoc(Model model, Integer d_num) throws Exception {
        DocDTO doc = service.doc(d_num);
        model.addAttribute("doc", doc);
        return "doc/doc";
@@ -146,14 +147,29 @@ public class DocController {
     
     // 문서 ACL 조정 페이지 이동(관리자 전용)
     @RequestMapping(value="/acl", method=RequestMethod.GET)
-    public String getacl() throws Exception{
+    public String getacl(Model model, int d_num) throws Exception{
+    	DocDTO doc = service.doc(d_num);
+    	model.addAttribute("doc", doc);
     	return "doc/acl";
     }
     
     // 문서 ACL 수정 및 ACL화면 출력
-    @RequestMapping(value="/aclupdate", method=RequestMethod.POST)
-    public String postaclupdate(DocDTO dto) throws Exception{
-    	service.aclupdate(dto);
-    	return "redirect:doc/doc";
+    @RequestMapping(value="/acl", method=RequestMethod.POST)
+    public String postacl(DocDTO dto) throws Exception{
+    	service.acl(dto);
+    	return "doc/acl";
+    }
+    
+    // 문서 검색
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public void getsearch(Model model, @RequestParam("d_num") int d_num, @RequestParam(value = "title",required = false, defaultValue = "") String title
+      ) throws Exception {
+     
+     List<DocDTO> search = null; 
+     //list = service.listPage(page.getDisplayPost(), page.getPostNum());
+     search = service.search(title, d_num);
+     
+     model.addAttribute("search", search);
+     
     }
 }

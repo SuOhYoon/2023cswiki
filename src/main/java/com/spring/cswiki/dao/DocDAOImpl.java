@@ -1,5 +1,6 @@
 package com.spring.cswiki.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.spring.cswiki.dto.DocDTO;
@@ -42,20 +43,23 @@ public class DocDAOImpl implements DocDAO {
 	}
 
 	@Override
-	public void aclinsert(DocDTO dto) {
-		sql.insert(namespace + ".create", dto);	
+	public void acl(DocDTO dto) {
+		sql.update(namespace+".acl", dto);
 		
 	}
 
 	@Override
-	public void aclupdate(DocDTO dto) {
-		sql.update(namespace+".aclupdate", dto);
-		
-	}
-
-	@Override
-	public void acldelete(int d_num) {
+	public void aclwipe(DocDTO dto) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public List<DocDTO> search(String d_title, int d_num) {
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		  
+		  data.put("d_num", d_num);
+		  data.put("d_title", d_title);
+		  return sql.selectList(namespace + ".search", data);
 	}
 }

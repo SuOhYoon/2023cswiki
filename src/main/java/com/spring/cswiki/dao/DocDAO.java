@@ -9,7 +9,7 @@ public interface DocDAO {
 	public DocDTO doc(int d_num); // 문서 본문 보기
 	public void edit(DocDTO dto); // 문서 편집
 	public void delete(int d_num); // 문서 삭제
-	public void aclinsert(DocDTO dto); // acl 삽입
-	public void aclupdate(DocDTO dto); // acl 수정
-	public void acldelete(int d_num); // acl 삭제
+	public void acl(DocDTO dto); // acl 수정
+	public void aclwipe(DocDTO dto); // acl 삭제
+	public List<DocDTO> search(String d_title, int d_num); // 문서 검색
 }

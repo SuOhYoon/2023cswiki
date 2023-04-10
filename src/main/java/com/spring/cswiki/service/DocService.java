@@ -10,6 +10,7 @@ public interface DocService {
 	public DocDTO doc(int d_num);
 	public void edit(DocDTO dto);
 	public void delete(int d_num);
-	public void aclinsert(DocDTO dto);
-	public void aclupdate(DocDTO dto);
+	public void acl(DocDTO dto);
+	public void aclwipe(DocDTO dto);
+	public List<DocDTO> search(String d_title, int d_num);
 }

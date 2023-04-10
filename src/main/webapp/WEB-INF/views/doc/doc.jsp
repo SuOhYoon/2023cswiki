@@ -64,7 +64,7 @@
 								<c:when test= "${member.p_id eq 0}">
 									삭제
 								</c:when>
-								<c:when test= "${member.p_id >= doc.p_update}">
+								<c:when test= "${member.p_id >= doc.p_delete}">
 									<a href="${path}/doc/delete?d_num=${doc.d_num}">삭제</a>
 								</c:when>
 								<c:otherwise>
