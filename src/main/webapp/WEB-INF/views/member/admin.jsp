@@ -18,10 +18,10 @@
    				권한 :
    				<c:choose>
    					<c:when test="${member.p_id eq 3}">
-   						개발자
+   						관리자
    					</c:when>
    					<c:otherwise>
-   						관리자
+   						개발자
    					</c:otherwise>
    				</c:choose>
 				<li><a href="${path}/member/memberlist">사용자 관리</a></li>

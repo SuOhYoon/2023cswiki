@@ -27,7 +27,7 @@
        		<div class="selectbox">
        			<c:forEach items="${list}" var="list">
            		<ul>
-               		<li>${list.u_id} | ${list.p_id} | ${list.email} | ${list.name} | ${	list.reg_date}</a></li>
+               		<li>${list.u_id} | ${list.p_id} | ${list.email} | ${list.name} | ${list.reg_date}</a></li>
            		</ul> 
            		</c:forEach>         
        		</div>
