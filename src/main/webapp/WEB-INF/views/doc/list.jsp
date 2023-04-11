@@ -21,7 +21,7 @@
 							</div>
 						</c:when>
 						<c:otherwise>
-							<p>Beta 1.0</p>
+							<p><a href="${path}/member/login">로그인이 필요합니다.</a></p>
 						</c:otherwise>
 					</c:choose>
                 </div>

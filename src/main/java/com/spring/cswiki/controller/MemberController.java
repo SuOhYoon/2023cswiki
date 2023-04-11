@@ -47,11 +47,11 @@ public class MemberController {
     // 로그인 처리, 값이 일치하면 로그인 수행 후 메인 페이지로 이동, 일치하지 않으면 다시 로그인 페이지로 이동
     @RequestMapping(value="/loginProcess", method = RequestMethod.POST)
     public String login(MemberDTO dto, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
-    	LOG.info("post login");
-		
+        LOG.info("post login");
+        
         HttpSession session = req.getSession();
         MemberDTO login = service.login(dto);
-    		
+                
         if(login == null) {
             session.setAttribute("member", null);
             session.setAttribute("p_id", null);
@@ -62,17 +62,29 @@ public class MemberController {
             LOG.info("로그인 성공!");
             session.setAttribute("member", login);
             session.setAttribute("p_id", login);
+
+            String referer = req.getHeader("Referer");
+            if (referer != null && !referer.contains("login")) {
+                session.setAttribute("prevPage", referer);
+                return "redirect:" + referer;
+            } else {
+                return "redirect:/";
+            }
         }
-        return "redirect:/";
     }
     
     // 로그아웃 처리
     @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logout(HttpSession session) throws Exception{
-		session.invalidate();
-		LOG.info("로그아웃 성공!");
-		return "redirect:/";
-	}
+    public String logout(HttpServletRequest req, HttpSession session) throws Exception {
+        String referer = req.getHeader("Referer");
+        session.invalidate();
+        LOG.info("로그아웃 성공!");
+        if (referer == null || referer.isEmpty()) {
+            return "redirect:/";
+        } else {
+            return "redirect:" + referer;
+        }
+    }
     
     // 관리자 메인 페이지로 이동
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
