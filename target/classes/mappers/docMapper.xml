@@ -26,7 +26,7 @@ VALUES (null, 1, 2, 2, 2, #{d_title}, #{d_content}, null, null);
     
     <!-- 문서 상세정보 -->
     <select id="doc" resultType="com.spring.cswiki.dto.DocDTO">
-    	select d_num, d_title, d_content, p_read, p_update from doc where d_num = #{d_num}
+    	select d_num, d_title, d_content, p_read, p_update, p_delete from doc where d_num = #{d_num}
     </select>
     
     <!-- 문서 편집 -->
