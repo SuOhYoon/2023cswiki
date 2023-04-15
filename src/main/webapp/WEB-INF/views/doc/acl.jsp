@@ -40,19 +40,103 @@
                 <button type="submit" id="aclupdate">
                     <span class="btn_text">설정</span> 
                 </button>
-           </form>
-     			읽기 권한 : 아무나
+           	</form>
+     			읽기 권한 : 
+				<c:choose>
+					<c:when test="${doc.p_read eq 4}">
+						개발자
+					</c:when>
+					<c:when test="${doc.p_read eq 3}">
+						관리자
+					</c:when>
+					<c:when test="${doc.p_read eq 2}">
+						회원
+					</c:when>
+					<c:otherwise>
+						아무나
+					</c:otherwise>
+				</c:choose>
         		<br>
-        		수정 권한 : 아무나
+        		수정 권한 :
+        		<c:choose>
+					<c:when test="${doc.p_update eq 4}">
+						개발자
+					</c:when>
+					<c:when test="${doc.p_update eq 3}">
+						관리자
+					</c:when>
+					<c:when test="${doc.p_update eq 2}">
+						회원
+					</c:when>
+					<c:otherwise>
+						아무나
+					</c:otherwise>
+				</c:choose>
         		<br>
-        		삭제 권한 : 아무나
+        		삭제 권한 :
+        		<c:choose>
+					<c:when test="${doc.p_delete eq 4}">
+						개발자
+					</c:when>
+					<c:when test="${doc.p_delete eq 3}">
+						관리자
+					</c:when>
+					<c:when test="${doc.p_delete eq 2}">
+						회원
+					</c:when>
+					<c:otherwise>
+						아무나
+					</c:otherwise>
+				</c:choose>
         	</c:when>
         	<c:otherwise>
-        		읽기 권한 : 아무나
+        		읽기 권한 :
+        		<c:choose>
+					<c:when test="${doc.p_read eq 4}">
+						개발자
+					</c:when>
+					<c:when test="${doc.p_read eq 3}">
+						관리자
+					</c:when>
+					<c:when test="${doc.p_read eq 2}">
+						회원
+					</c:when>
+					<c:otherwise>
+						아무나
+					</c:otherwise>
+				</c:choose>
         		<br>
-        		수정 권한 : 아무나
+        		수정 권한 :
+        		<c:choose>
+					<c:when test="${doc.p_update eq 4}">
+						개발자
+					</c:when>
+					<c:when test="${doc.p_update eq 3}">
+						관리자
+					</c:when>
+					<c:when test="${doc.p_update eq 2}">
+						회원
+					</c:when>
+					<c:otherwise>
+						아무나
+					</c:otherwise>
+				</c:choose>
         		<br>
-        		삭제 권한 : 아무나
+        		삭제 권한 :
+        		<c:choose>
+					<c:when test="${doc.p_delete eq 4}">
+						개발자
+					</c:when>
+					<c:when test="${doc.p_delete eq 3}">
+						관리자
+					</c:when>
+					<c:when test="${doc.p_delete eq 2}">
+						회원
+					</c:when>
+					<c:otherwise>
+						아무나
+					</c:otherwise>
+				</c:choose>
         	</c:otherwise>
         </c:choose>
         </div>

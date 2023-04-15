@@ -76,7 +76,7 @@
 		       </div>
 		       <div class="content">
 		       	<c:choose>
-		       		<c:when test="${doc.p_read eq 0}">
+		       		<c:when test="${doc.p_read eq 0 && empty doc.p_read}">
 		       			${doc.d_content}
 		       		</c:when>
 		       		<c:when test="${member.p_id >= doc.p_read }">

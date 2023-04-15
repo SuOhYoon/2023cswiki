@@ -35,4 +35,9 @@ import com.spring.cswiki.dto.MemberDTO;
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void grant(MemberDTO dto) throws Exception {
+		sql.update(namespace+".grant", dto);
+	}
 }

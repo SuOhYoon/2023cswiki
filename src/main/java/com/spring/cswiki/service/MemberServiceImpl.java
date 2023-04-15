@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
 import com.spring.cswiki.dao.MemberDAO;
+import com.spring.cswiki.dto.DocDTO;
 import com.spring.cswiki.dto.MemberDTO;
 
 @Service 
@@ -26,5 +27,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberDTO> list() {
 		return dao.list();
+	}
+
+	@Override
+	public void grant(MemberDTO dto) throws Exception {
+		dao.grant(dto);
 	}
 }

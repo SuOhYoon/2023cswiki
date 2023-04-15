@@ -24,8 +24,19 @@
    						개발자
    					</c:otherwise>
    				</c:choose>
-				<li><a href="${path}/member/memberlist">사용자 관리</a></li>
-				<li><a href="">게시판 관리</a></li>
+   				<c:choose>
+   					<c:when test="${member.p_id eq 3}">
+   						<li><a href="${path}/member/memberlist">사용자 조회</a></li>
+						<li><a href="${path}/member/grant">사용자 차단</a></li>
+						<li><a href="">게시판 관리</a></li>
+   					</c:when>
+   					<c:otherwise>
+   						<li><a href="${path}/member/memberlist">사용자 조회</a></li>
+						<li><a href="${path}/member/grant">사용자 권한 부여</a></li>
+						<li><a href="${path}/member/ban">사용자 차단</a></li>
+						<li><a href="">게시판 관리</a></li>
+   					</c:otherwise>
+   				</c:choose>
 			</ul>
    		</c:when>
    		<c:otherwise>

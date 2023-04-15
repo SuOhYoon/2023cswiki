@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.cswiki.dto.DocDTO;
 import com.spring.cswiki.dto.MemberDTO;
 import com.spring.cswiki.service.MemberService;
 
@@ -99,4 +100,19 @@ public class MemberController {
  		model.addAttribute("list", list);		
  		return "member/memberlist";
      }
+ 	
+ 	 // (개발자 전용) 권한 부여 페이지 이동
+ 	@RequestMapping(value="/grant", method=RequestMethod.GET)
+ 	public String getgrant(Model model, String u_id) throws Exception {
+// 		MemberDTO member = service.member(dto);
+//    	model.addAttribute("member", member);
+ 		return "member/grant";
+ 	}
+ 	
+ 	// (개발자 전용) 권한 부여
+ 	@RequestMapping(value="/grant", method=RequestMethod.POST)
+ 	public String postgrant(MemberDTO dto) throws Exception{
+ 		service.grant(dto);
+ 		return "member/grant";
+ 	}
 }
