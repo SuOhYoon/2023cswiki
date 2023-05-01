@@ -8,7 +8,7 @@
 	<meta charset="UTF-8">
 	<title>새 문서 작성</title>
 	<script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
-	<link rel="stylesheet" href="${path}/resources/css/create.css?1">
+	<link rel="stylesheet" href="${path}/resources/css/create.css?3">
 </head>
 <body>
 	<header id="header">
@@ -16,12 +16,12 @@
            <div id="header-top">
                <c:choose>
 					<c:when test="${not empty sessionScope.member}">
-							<div>
-								<p>${member.name}님 환영합니다.</p>
-							</div>
-						</c:when>
+						<div>
+							<span>${member.name}님 환영합니다. | <a href="${path}/member/logout">로그아웃</a><span>
+						</div>
+					</c:when>
 					<c:otherwise>
-						<p>Beta 1.0</p>
+						<span><a href="${path}/member/login">로그인</a><span>
 					</c:otherwise>
 				</c:choose>
     	   </div>

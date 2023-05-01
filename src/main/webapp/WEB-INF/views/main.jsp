@@ -24,7 +24,7 @@
                     <c:choose>
 						<c:when test="${not empty sessionScope.member}">
 							<div>
-								<p>${member.name}님 환영합니다.</p>
+								<span>${member.name}님 환영합니다.</span>
 							</div>
 						</c:when>
 						<c:otherwise>

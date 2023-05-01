@@ -106,7 +106,9 @@ public class MemberController {
  	public String getgrant(Model model, String u_id) throws Exception {
 // 		MemberDTO member = service.member(dto);
 //    	model.addAttribute("member", member);
- 		return "member/grant";
+ 		List<MemberDTO> list = service.list();
+ 		model.addAttribute("list", list);		
+ 		return "redirect:member/grant";
  	}
  	
  	// (개발자 전용) 권한 부여

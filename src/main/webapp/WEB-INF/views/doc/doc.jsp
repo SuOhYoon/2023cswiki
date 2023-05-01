@@ -8,13 +8,22 @@
         <meta charset="utf-8"/>
         <title>CS위키</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?1" />
-        <link rel="stylesheet" href="${path}/resources/css/doc.css?3">
+        <link rel="stylesheet" href="${path}/resources/css/doc.css?5">
     </head>
     <body>
         <header id="header">
             <div class="center-align"> <!-- 가운데 정렬용 div -->
                 <div id="header-top">
-                    <span>관리자님 | 로그아웃 | 사용자 정보</span>
+                    <c:choose>
+						<c:when test="${not empty sessionScope.member}">
+							<div>
+								<span>${member.name}님 환영합니다. | <a href="${path}/member/logout">로그아웃</a><span>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<span><a href="${path}/member/login">로그인</a><span>
+						</c:otherwise>
+					</c:choose>
                 </div>
                 <div id="header-search" style="clear:both">
                     <a href="${path}/">
@@ -76,7 +85,7 @@
 		       </div>
 		       <div class="content">
 		       	<c:choose>
-		       		<c:when test="${doc.p_read eq 0 && empty doc.p_read}">
+		       		<c:when test="${doc.p_read eq 0 && empty member.p_id}">
 		       			${doc.d_content}
 		       		</c:when>
 		       		<c:when test="${member.p_id >= doc.p_read }">

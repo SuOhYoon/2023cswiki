@@ -28,7 +28,7 @@
 		  	</script>
 		</c:when>
 		<c:otherwise>
-			편집 권한이 없습니다!
+			편집 권한이 없습니다! 해당 문서의 ACL 탭을 확인하십시요.
 		</c:otherwise>
 	</c:choose>
 </body>

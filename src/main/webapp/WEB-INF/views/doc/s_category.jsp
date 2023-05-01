@@ -8,7 +8,7 @@
         <meta charset="utf-8"/>
         <title>CS위키</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?1" />
-        <link rel="stylesheet" href="${path}/resources/css/doc_list.css?6">
+        <link rel="stylesheet" href="${path}/resources/css/doc_list.css?3">
     </head>
     <body>
         <header id="header">
@@ -17,11 +17,11 @@
                     <c:choose>
 						<c:when test="${not empty sessionScope.member}">
 							<div>
-								<span>${member.name}님 환영합니다. | <a href="${path}/member/logout">로그아웃</a><span>
+								<p>${member.name}님 환영합니다. | <a href="${path}/member/logout">로그아웃</a></p>
 							</div>
 						</c:when>
 						<c:otherwise>
-							<span><a href="${path}/member/login">로그인</a><span>
+							<p><a href="${path}/member/login">로그인이 필요합니다.</a></p>
 						</c:otherwise>
 					</c:choose>
                 </div>
@@ -55,34 +55,18 @@
             </div>
         </nav>
         <main>
-<!--             <div id="list"> -->
-<!--         		<div class="list_inner"> -->
-<!--             	<h2>분류<h2> -->
-<!--             		<div class="selectbox"> -->
-<%--             			<c:forEach items="${list}" var="list"> --%>
-<!--                 		<ul> -->
-<!--                     		<li> -->
-<%--                     			<a href="<c:url value='/doc/s_category/${list.b_ca_num}'/>"> --%>
-<%--                     				<c:out value="${list.b_ca_name}"/> --%>
-<!--                 				</a> -->
-<!--                				</li> -->
-<!--                 		</ul>  -->
-<%--                 		</c:forEach>          --%>
-<!--             		</div> -->
-<!--         		</div> -->
-<!--     		</div> -->
-				<div id="list">
-	        		<div class="list_inner">
-	            	<h2>문서 리스트<h2>
-	            		<div class="selectbox">
-	            			<c:forEach items="${list}" var="list">
-	                		<ul>
-	                    		<li><a href="${path}/doc/doc?d_num=${list.d_num}">${list.d_title}</a></li>
-	                		</ul> 
-	                		</c:forEach>         
-	            		</div>
-	        		</div>
-	    		</div>
+            <div id="list">
+        		<div class="list_inner">
+            	<h2>분류 : ${s_category[0].b_ca_num}<h2>
+            		<div class="selectbox">
+            			<c:forEach items="${s_category}" var="smallCategory">
+                		<ul>
+                    		<li>${smallCategory.s_ca_name}</li>
+                		</ul> 
+                		</c:forEach>         
+            		</div>
+        		</div>
+    		</div>
         </main>
         <footer class="footer">
         <hr>

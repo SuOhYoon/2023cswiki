@@ -24,6 +24,7 @@ html, body{
     padding : 0;
     font-family: Dotum,'돋움',Helvetica,"Apple SD Gothic Neo",sans-serif;
 }
+
 #fixed{
     position:fixed;
     top : 50px;
@@ -62,6 +63,15 @@ header{
     letter-spacing: -1px;
     font-size:  11px;
     line-height: 22px;
+}
+
+#header-top span a{
+    text-decoration:none;
+    color:inherit;
+}
+
+#header-top span a:hover{
+    color:skyblue;
 }
 
 #header-search{
@@ -220,6 +230,11 @@ div .selectbox > ul > li{
 
 div .selectbox > ul > li > a{
     text-decoration: none;
+    color:black;
+}
+
+div .selectbox > ul > li > a:hover{
+    color:skyblue;
 }
 
 .title{
@@ -228,6 +243,11 @@ div .selectbox > ul > li > a{
     margin:0 auto;
     font-family:'InterparkGothicBold';
     font-size:50px;
+}
+
+.content a{
+	text-decoration:none;
+	color:blue;
 }
 
 footer{

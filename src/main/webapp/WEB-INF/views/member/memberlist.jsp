@@ -17,7 +17,7 @@
    				관리자 이름 : ${member.name}
    				권한 :
    				<c:choose>
-   					<c:when test="${member.p_id eq 3}">
+   					<c:when test="${member.p_id eq 4}">
    						개발자
    					</c:when>
    					<c:otherwise>
@@ -27,7 +27,7 @@
        		<div class="selectbox">
        			<c:forEach items="${list}" var="list">
            		<ul>
-               		<li>${list.u_id} | ${list.p_id} | ${list.email} | ${list.name} | ${list.reg_date}</a></li>
+               		<li>${list.u_id} | ${list.p_id} | ${list.email} | ${list.name} | ${list.reg_date}</li>
            		</ul> 
            		</c:forEach>         
        		</div>

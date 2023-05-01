@@ -6,11 +6,14 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.spring.cswiki.dto.BigCategoryVO;
 import com.spring.cswiki.dto.DocDTO;
+import com.spring.cswiki.dto.SmallCategoryVO;
 import com.spring.cswiki.dao.DocDAO;
 import com.spring.cswiki.service.DocService;
 
@@ -93,14 +96,36 @@ public class DocController {
 	    }
 	    return null;
 	}
-	// 문서 목록 페이지로 이동
+	// 분류 페이지로 이동 및 대분류 보기
+//	@RequestMapping(value="/list", method=RequestMethod.GET) //url mapping
+//    public String getList(Model model) throws Exception{
+//		List<BigCategoryVO> list = service.list();
+//		model.addAttribute("list", list);		
+//		return "doc/list";
+//    }
+	
+	// 전체 문서 보기
 	@RequestMapping(value="/list", method=RequestMethod.GET) //url mapping
     public String getList(Model model) throws Exception{
 		List<DocDTO> list = service.list();
 		model.addAttribute("list", list);		
 		return "doc/list";
     }
+	// 소분류 페이지로 이동 및 소분류 보기
+	@RequestMapping(value="/s_category/{b_ca_num}", method=RequestMethod.GET) //url mapping
+    public String gets_category(@PathVariable int b_ca_num, Model model) throws Exception{
+		List<SmallCategoryVO> s_category = service.s_category(b_ca_num);
+		model.addAttribute("s_category", s_category);		
+		return "doc/s_category";
+    }
 	
+	// 
+	@RequestMapping(value="/doc_list", method=RequestMethod.GET) //url mapping
+    public String getdoc_list(Model model) throws Exception{
+		List<DocDTO> doc_list = service.doc_list();
+		model.addAttribute("doc_list", doc_list);		
+		return "doc/doc_list";
+    }
 	// 문서 작성 페이지로 이동
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String getcreate() throws Exception {

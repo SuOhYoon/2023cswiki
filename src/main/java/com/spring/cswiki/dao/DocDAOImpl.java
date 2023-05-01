@@ -3,7 +3,10 @@ package com.spring.cswiki.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.spring.cswiki.dto.BigCategoryVO;
 import com.spring.cswiki.dto.DocDTO;
+import com.spring.cswiki.dto.SmallCategoryVO;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -17,10 +20,28 @@ public class DocDAOImpl implements DocDAO {
 	
 	private static String namespace = "com.spring.cswiki.mappers.doc";
 	
-	public List<DocDTO> list(){
+//	@Override
+//	public List<BigCategoryVO> list() {
+//		// TODO Auto-generated method stub
+//		return sql.selectList(namespace + ".list");
+//	}
+	
+	@Override
+	public List<DocDTO> list() {
 		return sql.selectList(namespace + ".list");
 	}
 
+	@Override
+	public List<SmallCategoryVO> s_category(int b_ca_num) {
+		// TODO Auto-generated method stub
+		return sql.selectList(namespace + ".s_category");
+	}
+	
+	@Override
+	public List<DocDTO> doc_list() {
+		return sql.selectList(namespace + ".doc_list");
+	}
+	
 	@Override
 	public void create(DocDTO dto) {
 		sql.insert(namespace + ".create", dto);		

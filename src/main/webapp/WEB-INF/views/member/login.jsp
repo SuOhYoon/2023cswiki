@@ -47,9 +47,9 @@
                     </form>
                 </div>
                 <ul class="find_wrap">
-                    <li><a href="">비밀번호 찾기</a></li>
+                    <li><a href='<c:url value='/member/findpw'/>'>비밀번호 찾기</a></li>
                     <li>|</li>
-                    <li><a href="">아이디 찾기</a></li>
+                    <li><a href='<c:url value='/member/findid'/>'>아이디 찾기</a></li>
                     <li>|</li>
                     <li><a href='<c:url value='/member/join'/>'>회원가입</a></li>
                 </ul>

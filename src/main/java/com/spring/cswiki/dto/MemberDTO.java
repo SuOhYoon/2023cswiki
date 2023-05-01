@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class MemberDTO {
 	private String u_id;
+	private String g_id;
 	private int p_id;
 	private String email;
 	private String name;
@@ -18,6 +19,12 @@ public class MemberDTO {
 	}
 	public int getP_id() {
 		return p_id;
+	}	
+	public void setG_id(String g_id) {
+		this.g_id = g_id;
+	}
+	public String getG_id() {
+		return g_id;
 	}
 	public void setP_id(int p_id) {
 		this.p_id = p_id;

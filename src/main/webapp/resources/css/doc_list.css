@@ -24,6 +24,12 @@ html, body{
     padding : 0;
     font-family: Dotum,'돋움',Helvetica,"Apple SD Gothic Neo",sans-serif;
 }
+
+a{
+	text-decoration:none;
+	color: #888;
+}
+
 #fixed{
     position:fixed;
     top : 50px;
@@ -62,6 +68,10 @@ header{
     letter-spacing: -1px;
     font-size:  11px;
     line-height: 22px;
+}
+
+#header-top span a:hover{
+    color:skyblue;
 }
 
 #header-search{
@@ -183,6 +193,12 @@ nav li > a:hover{
     font-family:'InterparkGothicMedium';
 }
 
+#list a{
+	color:black;
+}
+#list a:hover{
+	color : skyblue;
+}
 .list_inner{
     margin:0 auto;
 }
