@@ -18,18 +18,10 @@
 		<table>
 			<thead>
 				<tr>
-					<th scope="col">b_content</th>
-					<th scope="col">b_date</th>
-					<th scope="col">b_num</th>
-					<th scope="col">b_title</th>
-					<th scope="col">bl_num</th>
-					<th scope="col">hashtag1</th>
-					<th scope="col">hashtag2</th>
-					<th scope="col">hashtag3</th>
-					<th scope="col">hashtag4</th>
-					<th scope="col">hashtag5</th>
-					<th scope="col">p_id</th>
-					<th scope="col">u_id</th>
+					<th scope="col">내용</th>
+					<th scope="col">날짜</th>
+					<th scope="col">게시글 제목</th>
+					<th scope="col">게시글 번호</th>
 				</tr>
 			</thead>
 
@@ -39,19 +31,17 @@
 						<td class="text_ct">${list.b_content}&nbsp;</td>
 						<td class="text_ct"><fmt:formatDate value="${list.b_date}"
 								pattern="yyyy/MM/dd" /></td>
-						<td class="text_ct">${list.b_title}&nbsp;</td>
+						<td class="text_ct"><a
+							href="${path}/board/detail?bl_num=${list.bl_num}">${list.b_title}&nbsp;</a></td>
 						<td class="text_ct">${list.bl_num}&nbsp;</td>
-						<td class="text_ct">${list.hashtag1}&nbsp;</td>
-						<td class="text_ct">${list.hashtag2}&nbsp;</td>
-						<td class="text_ct">${list.hashtag3}&nbsp;</td>
-						<td class="text_ct">${list.hashtag4}&nbsp;</td>
-						<td class="text_ct">${list.hashtag5}&nbsp;</td>
-						<td class="text_ct">${list.p_id}&nbsp;</td>
-						<td class="text_ct">${list.u_id}&nbsp;</td>
+
+
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<a href="<c:url value='/board/create'/>" role="button"
+			class="btn btn-outline-info">글쓰기</a>
 	</form>
 </body>
 </html>

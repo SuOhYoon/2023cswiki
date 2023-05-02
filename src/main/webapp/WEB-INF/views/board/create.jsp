@@ -2,10 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
-
 <head>
 <style>
 .center {
@@ -22,17 +20,17 @@
 	<form class="center" method="post">
 		<h2>Create Page</h2>
 		<div class="form-group">
-			<label>ID</label> <input type="text" class="form-control" name="u_id"
-				placeholder="ID 작성해주세요.">
+			<label>b_content</label> <input type="text" class="form-control"
+				name="b_content" placeholder="b_content 작성해주세요.">
 		</div>
 		<div class="form-group">
-			<label>Name</label> <input type="text" class="form-control"
-				name="name" placeholder="NAME 적어주세요.">
+			<label>b_title</label> <input type="text" class="form-control"
+				name="b_title" placeholder="b_title 작성해주세요.">
 		</div>
-		<div class="form-group">
-			<label>Goal</label> <input class="form-control" name="goal"
-				placeholder="GOAL 적어주세요.">
-		</div>
+<!-- 		<div class="form-group"> -->
+<!-- 			<label>u_id</label> <input type="text" class="form-control" -->
+<!-- 				name="u_id" placeholder="u_id 작성해주세요."> -->
+<!-- 		</div> -->
 
 		<button type="submit" class="btn btn-outline-info">등록</button>
 		<button type="button" class="btn btn-outline-info">

@@ -7,18 +7,47 @@
 	<!-- 게시물 목록 -->
 	<select id="list" resultType="com.spring.cswiki.dto.BoardVO">
 		select
-		b_content,
-		b_date,
-		b_num,
-		b_title,
-		bl_num,
+		b_content, <!-- 게시글 내용 -->
+		b_date,		<!-- 작성일자 -->
+		b_num,	<!-- 게시판 번호 -->
+		b_title,<!-- 게시글 제목 -->
+		bl_num,	<!-- 게시글 번호 -->
 		hashtag1,
 		hashtag2,
 		hashtag3,
 		hashtag4,
 		hashtag5,
-		p_id,
-		u_id
+		p_id,<!-- 참여자 권한 -->
+		u_id<!-- 댓글 작성자 -->
 		from boardlist
 	</select>
+
+	<!-- 게시물 등록 -->
+	<insert id="create">
+		insert into boardlist (b_content,b_date,b_num
+		,b_title,bl_num,p_id)
+		values (#{b_content},NOW(),1, #{b_title},
+		#{bl_num},1)
+	</insert>
+
+	<!-- 게시글 상세정보 -->
+
+	<select id="detail" resultType="com.spring.cswiki.dto.BoardVO">
+		select b_content, b_date, b_num,
+		b_title, bl_num, u_id, p_id
+		from boardlist where bl_num = #{bl_num}
+	</select>
+	
+	<!-- 회원 정보 수정 -->
+	<update id = "update">
+		update boardlist
+		set b_title=#{b_title}, b_content=#{b_content}, b_date=NOW()
+		where bl_num=#{bl_num}
+	</update>
+
+	<!-- 회원 삭제 -->
+	<delete id="delete">
+		delete boardlist
+		where bl_num=#{bl_num}
+	</delete>
 </mapper>
