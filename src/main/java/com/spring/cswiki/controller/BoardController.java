@@ -19,27 +19,27 @@ public class BoardController {
 	public String getList(Model model) throws Exception {
 		List<BoardVO> list = service.list();
 		model.addAttribute("list", list);
-		// board/list.jsp濡� �룷�썙�뵫
+		// board/list.jsp嚥∽옙 占쎈７占쎌뜖占쎈뎃
 		return "board/list";
 	}
 
-	// 寃뚯떆臾� �옉�꽦 �럹�씠吏�濡� �씠�룞
+	// 野껊슣�뻻�눧占� 占쎌삂占쎄쉐 占쎈읂占쎌뵠筌욑옙嚥∽옙 占쎌뵠占쎈짗
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String getcreate() throws Exception {
 		return "board/create";
 	}
 
-	// 寃뚯떆臾� �옉�꽦 post
+	// 野껊슣�뻻�눧占� 占쎌삂占쎄쉐 post
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String postcreate(BoardVO vo) throws Exception {
 		service.create(vo);
 		return "redirect:list";
 	}
 
-	// 게시물 상세 페이지로 이동
+	// 寃뚯떆臾� �긽�꽭 �럹�씠吏�濡� �씠�룞
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String getdetail(Model model, int bl_num) {
-		BoardVO data = service.detail(bl_num);// bl_num값 넘김
+		BoardVO data = service.detail(bl_num);// bl_num媛� �꽆源�
 		model.addAttribute("data", data);
 		return "board/detail";
 	}
@@ -52,14 +52,14 @@ public class BoardController {
 		return "board/update";
 	}
 
-	// 게시글 수정 post
+	// 寃뚯떆湲� �닔�젙 post
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String postupdate(BoardVO vo) throws Exception {
 		service.update(vo);
-		return "redirect:list"; // 리스트로 리다이렉트
+		return "redirect:list"; // 由ъ뒪�듃濡� 由щ떎�씠�젆�듃
 	}
 
-	// 게시물 삭제
+	// 寃뚯떆臾� �궘�젣
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String postdelete(int bl_num) throws Exception {
 		service.delete(bl_num);

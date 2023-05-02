@@ -17,7 +17,7 @@
         <property name="url"
             value="jdbc:mysql://127.0.0.1:3306/cswiki?useSSL=false&amp;serverTimezone=Asia/Seoul"></property>
         <property name="username" value="root"></property>
-        <property name="password" value="3304"></property>
+        <property name="password" value="0000"></property>
 		</bean>
 	<!-- SqlSessionFactory  -->
 		<bean id="sqlSessionFactory"

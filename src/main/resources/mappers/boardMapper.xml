@@ -47,7 +47,7 @@
 
 	<!-- 회원 삭제 -->
 	<delete id="delete">
-		delete boardlist
+		delete from boardlist
 		where bl_num=#{bl_num}
 	</delete>
 </mapper>
