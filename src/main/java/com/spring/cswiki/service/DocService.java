@@ -7,10 +7,9 @@ import com.spring.cswiki.dto.DocDTO;
 import com.spring.cswiki.dto.SmallCategoryVO;
 
 public interface DocService {
-	public List<DocDTO> list();
-//	public List<BigCategoryVO> list();
+	public List<BigCategoryVO> list();
 	public List<SmallCategoryVO> s_category(int b_ca_num);
-	public List<DocDTO> doc_list();
+	public List<DocDTO> doc_list(int s_ca_num);
 	public void create(DocDTO dto);
 	public DocDTO doc(int d_num);
 	public void edit(DocDTO dto);

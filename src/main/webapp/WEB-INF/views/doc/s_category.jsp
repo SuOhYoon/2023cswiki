@@ -56,17 +56,21 @@
         </nav>
         <main>
             <div id="list">
-        		<div class="list_inner">
-            	<h2>분류 : ${s_category[0].b_ca_num}<h2>
-            		<div class="selectbox">
-            			<c:forEach items="${s_category}" var="smallCategory">
-                		<ul>
-                    		<li>${smallCategory.s_ca_name}</li>
-                		</ul> 
-                		</c:forEach>         
-            		</div>
-        		</div>
-    		</div>
+			   <div class="list_inner">
+			       <h2>소분류</h2>
+			       <div class="selectbox">
+			           <ul>
+			               <c:forEach items="${s_category}" var="s_category">
+			                   <li>
+				                   <a href="${path}/doc/doc_list?s_ca_num=${s_category.s_ca_num}">
+		                   		   		<c:out value="${s_category.s_ca_name}"/>
+		               			   </a>
+			                   </li>
+			               </c:forEach>
+			            </ul>
+			        </div>
+			    </div>
+			</div>
         </main>
         <footer class="footer">
         <hr>

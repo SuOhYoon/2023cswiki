@@ -17,17 +17,11 @@ public class DocServiceImpl implements DocService {
 
 	@Inject
 	private DocDAO dao;
-//	@Override
-//	public List<BigCategoryVO> list() {
-//		// TODO Auto-generated method stub
-//		return dao.list();
-//	}
-
 	@Override
-	public List<DocDTO> list() {
+	public List<BigCategoryVO> list() {
 		// TODO Auto-generated method stub
 		return dao.list();
-	}	
+	}
 	
 	@Override
 	public List<SmallCategoryVO> s_category(int b_ca_num) {
@@ -36,9 +30,9 @@ public class DocServiceImpl implements DocService {
 	}
 
 	@Override
-	public List<DocDTO> doc_list() {
+	public List<DocDTO> doc_list(int s_ca_num) {
 		// TODO Auto-generated method stub
-		return dao.doc_list();
+		return dao.doc_list(s_ca_num);
 	}
 	
 	@Override

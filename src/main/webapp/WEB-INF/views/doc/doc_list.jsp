@@ -60,9 +60,9 @@
             	<h2>문서 리스트<h2>
             	<a href='<c:url value='/doc/create'/>' role="button" class="btn btn-outline-info">새 문서 만들기</a>
             		<div class="selectbox">
-            			<c:forEach items="${list}" var="list">
+            			<c:forEach items="${doc_list}" var="doc_list">
                 		<ul>
-                    		<li><a href="${path}/doc/doc?d_num=${list.d_num}">${list.d_title}</a></li>
+                    		<li><a href="${path}/doc/doc?d_num=${doc_list.d_num}">${doc_list.d_title}</a></li>
                 		</ul> 
                 		</c:forEach>         
             		</div>

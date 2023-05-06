@@ -55,34 +55,22 @@
             </div>
         </nav>
         <main>
-<!--             <div id="list"> -->
-<!--         		<div class="list_inner"> -->
-<!--             	<h2>분류<h2> -->
-<!--             		<div class="selectbox"> -->
-<%--             			<c:forEach items="${list}" var="list"> --%>
-<!--                 		<ul> -->
-<!--                     		<li> -->
-<%--                     			<a href="<c:url value='/doc/s_category/${list.b_ca_num}'/>"> --%>
-<%--                     				<c:out value="${list.b_ca_name}"/> --%>
-<!--                 				</a> -->
-<!--                				</li> -->
-<!--                 		</ul>  -->
-<%--                 		</c:forEach>          --%>
-<!--             		</div> -->
-<!--         		</div> -->
-<!--     		</div> -->
-				<div id="list">
-	        		<div class="list_inner">
-	            	<h2>문서 리스트<h2>
-	            		<div class="selectbox">
-	            			<c:forEach items="${list}" var="list">
-	                		<ul>
-	                    		<li><a href="${path}/doc/doc?d_num=${list.d_num}">${list.d_title}</a></li>
-	                		</ul> 
-	                		</c:forEach>         
-	            		</div>
-	        		</div>
-	    		</div>
+            <div id="list">
+        		<div class="list_inner">
+            	<h2>분류<h2>
+            		<div class="selectbox">
+            			<c:forEach items="${list}" var="list">
+                		<ul>
+                    		<li>
+                    			<a href="${path}/doc/s_category?b_ca_num=${list.b_ca_num}">
+                    				<c:out value="${list.b_ca_name}"/>
+                				</a>
+               				</li>
+                		</ul> 
+                		</c:forEach>         
+            		</div>
+        		</div>
+    		</div>
         </main>
         <footer class="footer">
         <hr>

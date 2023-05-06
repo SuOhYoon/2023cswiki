@@ -15,9 +15,9 @@
 		<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
         <property name="url"
-            value="jdbc:mysql://127.0.0.1:3306/cswiki?useSSL=false&amp;serverTimezone=Asia/Seoul"></property>
+            value="jdbc:mysql://127.0.0.1:3306/cswiki?allowPublicKeyRetrieval=true"></property>
         <property name="username" value="root"></property>
-        <property name="password" value="0000"></property>
+        <property name="password" value="3304"></property>
 		</bean>
 	<!-- SqlSessionFactory  -->
 		<bean id="sqlSessionFactory"

@@ -20,26 +20,21 @@ public class DocDAOImpl implements DocDAO {
 	
 	private static String namespace = "com.spring.cswiki.mappers.doc";
 	
-//	@Override
-//	public List<BigCategoryVO> list() {
-//		// TODO Auto-generated method stub
-//		return sql.selectList(namespace + ".list");
-//	}
-	
 	@Override
-	public List<DocDTO> list() {
+	public List<BigCategoryVO> list() {
+		// TODO Auto-generated method stub
 		return sql.selectList(namespace + ".list");
 	}
-
+	
 	@Override
 	public List<SmallCategoryVO> s_category(int b_ca_num) {
 		// TODO Auto-generated method stub
-		return sql.selectList(namespace + ".s_category");
+		return sql.selectList(namespace + ".s_category", b_ca_num);
 	}
 	
 	@Override
-	public List<DocDTO> doc_list() {
-		return sql.selectList(namespace + ".doc_list");
+	public List<DocDTO> doc_list(int s_ca_num) {
+		return sql.selectList(namespace + ".doc_list", s_ca_num);
 	}
 	
 	@Override

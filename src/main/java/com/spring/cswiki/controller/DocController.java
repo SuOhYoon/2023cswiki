@@ -34,6 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonObject;
 
@@ -96,36 +97,42 @@ public class DocController {
 	    }
 	    return null;
 	}
-	// 분류 페이지로 이동 및 대분류 보기
-//	@RequestMapping(value="/list", method=RequestMethod.GET) //url mapping
-//    public String getList(Model model) throws Exception{
-//		List<BigCategoryVO> list = service.list();
-//		model.addAttribute("list", list);		
-//		return "doc/list";
-//    }
-	
-	// 전체 문서 보기
+	// 대분류 페이지로 이동 및 대분류 보기
 	@RequestMapping(value="/list", method=RequestMethod.GET) //url mapping
-    public String getList(Model model) throws Exception{
-		List<DocDTO> list = service.list();
-		model.addAttribute("list", list);		
-		return "doc/list";
-    }
+	public ModelAndView getBigCategoryList() {
+	    ModelAndView modelAndView = new ModelAndView("doc/list");
+	    List<BigCategoryVO> list = service.list();
+	    modelAndView.addObject("list", list);
+	    return modelAndView;
+	  }
+	
 	// 소분류 페이지로 이동 및 소분류 보기
-	@RequestMapping(value="/s_category/{b_ca_num}", method=RequestMethod.GET) //url mapping
-    public String gets_category(@PathVariable int b_ca_num, Model model) throws Exception{
-		List<SmallCategoryVO> s_category = service.s_category(b_ca_num);
-		model.addAttribute("s_category", s_category);		
-		return "doc/s_category";
+	@RequestMapping(value = "/s_category", method = RequestMethod.GET)
+    public String gets_category(Model model, @RequestParam("b_ca_num") int b_ca_num) throws Exception {
+	   List<SmallCategoryVO> s_category = service.s_category(b_ca_num);
+	   model.addAttribute("s_category", s_category);
+	   model.addAttribute("b_ca_num", b_ca_num);
+	   System.out.println("현재 분류 : " + b_ca_num);
+       return "doc/s_category";
     }
 	
 	// 
 	@RequestMapping(value="/doc_list", method=RequestMethod.GET) //url mapping
-    public String getdoc_list(Model model) throws Exception{
-		List<DocDTO> doc_list = service.doc_list();
-		model.addAttribute("doc_list", doc_list);		
+    public String getdoc_list(Model model, @RequestParam("s_ca_num") int s_ca_num) throws Exception{
+		List<DocDTO> doc_list = service.doc_list(s_ca_num);
+		model.addAttribute("doc_list", doc_list);	
+		model.addAttribute("b_ca_num", s_ca_num);
 		return "doc/doc_list";
     }
+	
+	 // 문서 본문으로 이동
+    @RequestMapping(value = "/doc", method = RequestMethod.GET)
+    public String getdoc(Model model, Integer d_num) throws Exception {
+       DocDTO doc = service.doc(d_num);
+       model.addAttribute("doc", doc);
+       return "doc/doc";
+    }
+    
 	// 문서 작성 페이지로 이동
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String getcreate() throws Exception {
@@ -140,13 +147,7 @@ public class DocController {
     }
     
     
-    // 문서 본문으로 이동
-    @RequestMapping(value = "/doc", method = RequestMethod.GET)
-    public String getdoc(Model model, Integer d_num) throws Exception {
-       DocDTO doc = service.doc(d_num);
-       model.addAttribute("doc", doc);
-       return "doc/doc";
-    }
+   
     
     // 문서 편집창으로 이동
     @RequestMapping(value= "/edit", method = RequestMethod.GET)
