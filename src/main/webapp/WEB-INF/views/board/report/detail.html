@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="/src/main/webapp/resources/css/boardlist.css" rel="stylesheet"/>
+	<meta charset="UTF-8">
+	<title>신고게시판</title>
+</head>
+<body>
+	<header id="header">
+		<div class="center-align"> <!-- 가운데 정렬용 div -->
+			<div id="header-top">
+				<c:choose>
+					<c:when test="${not empty sessionScope.member}">
+						<div>
+							<span>${member.name}님 환영합니다. | <a href="${path}/member/logout">로그아웃</a><span>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<span><a href="${path}/member/login">로그인</a><span>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</div>
+	</header>
+	<nav>
+		<div class="center-align relative">
+			<ul> <!-- unordered list --> <!-- ol 태그도 있어요 ordered list -->
+				<li><a>CS위키 게시판</a></li> <!-- list item -->
+				<li><a>자유게시판</a></li> <!-- list item -->
+				<li><a>문의게시판</a></li> <!-- list item -->
+				<li><a>신고게시판</a></li> <!-- list item -->
+				<li><a>위키로 이동</a></li> <!-- list item -->
+			</ul>
+		</div>
+	</nav>
+	<main>
+		<h2>신고</h2>
+		편집요약 불량 신고.
+		<br>
+		GALAXY_NOTE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 작성일 : 2023-05-09 22:46
+		<hr>
+		https://board.namu.wiki/b/qna/2797590?p=2
+        특정 업체가 나무위키를 홍보 무대로 사용하고 있음에 삭제되었던 글들이 다시 해당 업체의 주도하에 다시 복구되고 있습니다.
+        해당 업체로 의심되는 계정은 다중 계정 검사요청이 있었을 정도로 업체가 홍보로 쓰는 키워드를 계속 사용하고 있습니다.
+        https://namu.wiki/w/%ED%9A%8C%ED%94%BC%ED%98%95%20%EB%82%A8%EC%9E%90
+		<br>
+	<a href="/cswiki/board/update?bl_num=${data.bl_num}" role="button"
+		class="btn btn-outline-info">수정</a>
+	<a href="/cswiki/board/delete?bl_num=${data.bl_num}" role="button"
+		class="btn btn-outline-info">삭제</a>
+	</main>
+</body>
+</html>

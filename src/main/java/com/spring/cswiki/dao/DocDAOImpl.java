@@ -71,11 +71,7 @@ public class DocDAOImpl implements DocDAO {
 	}
 	
 	@Override
-	public List<DocDTO> search(String d_title, int d_num) {
-		HashMap<String, Object> data = new HashMap<String, Object>();
-		  
-		  data.put("d_num", d_num);
-		  data.put("d_title", d_title);
-		  return sql.selectList(namespace + ".search", data);
+	public DocDTO search(String d_title) {
+		return sql.selectOne(namespace + ".search", d_title);
 	}
 }

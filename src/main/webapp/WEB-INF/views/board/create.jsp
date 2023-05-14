@@ -20,21 +20,17 @@
 	<form class="center" method="post">
 		<h2>Create Page</h2>
 		<div class="form-group">
-			<label>b_content</label> <input type="text" class="form-control"
-				name="b_content" placeholder="b_content 작성해주세요.">
+			<label>b_title</label> <input type="text" class="form-control"
+				name="b_title" placeholder="제목">
 		</div>
 		<div class="form-group">
-			<label>b_title</label> <input type="text" class="form-control"
-				name="b_title" placeholder="b_title 작성해주세요.">
+			<label>b_content</label> <input type="text" class="form-control"
+				name="b_content" placeholder="내용">
 		</div>
-<!-- 		<div class="form-group"> -->
-<!-- 			<label>u_id</label> <input type="text" class="form-control" -->
-<!-- 				name="u_id" placeholder="u_id 작성해주세요."> -->
-<!-- 		</div> -->
 
-		<button type="submit" class="btn btn-outline-info">등록</button>
+		<button type="submit" class="btn btn-outline-info">작성</button>
 		<button type="button" class="btn btn-outline-info">
-			<a href="/board/list">돌아가기</a>
+			<a href="/board/list">이전</a>
 		</button>
 	</form>
 </body>

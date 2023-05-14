@@ -13,7 +13,6 @@ public class BoardVO {
 	private String hashtag3;
 	private String hashtag4;
 	private String hashtag5;
-	private int p_id;
 	private String u_id;
 
 	public String getB_content() {
@@ -97,14 +96,6 @@ public class BoardVO {
 		this.hashtag5 = hashtag5;
 	}
 
-	public int getP_id() {
-		return p_id;
-	}
-
-	public void setP_id(int p_id) {
-		this.p_id = p_id;
-	}
-
 	public String getU_id() {
 		return u_id;
 	}
@@ -112,5 +103,4 @@ public class BoardVO {
 	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
-
 }

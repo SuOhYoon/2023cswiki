@@ -3,7 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.cswiki.mappers.board">
-
+	<!-- 전체 게시판 글 목록 -->
+	<select id="all" resultType="com.spring.cswiki.dto.BoardVO">
+		SELECT b_title, u_id, b_date FROM boardlist WHERE b_num IN(SELECT b_num FROM board WHERE b_num = #{b_num})
+	</select>
+	
 	<!-- 게시물 목록 -->
 	<select id="list" resultType="com.spring.cswiki.dto.BoardVO">
 		select
@@ -12,29 +16,21 @@
 		b_num,	<!-- 게시판 번호 -->
 		b_title,<!-- 게시글 제목 -->
 		bl_num,	<!-- 게시글 번호 -->
-		hashtag1,
-		hashtag2,
-		hashtag3,
-		hashtag4,
-		hashtag5,
-		p_id,<!-- 참여자 권한 -->
 		u_id<!-- 댓글 작성자 -->
 		from boardlist
 	</select>
 
 	<!-- 게시물 등록 -->
 	<insert id="create">
-		insert into boardlist (b_content,b_date,b_num
-		,b_title,bl_num,p_id)
-		values (#{b_content},NOW(),1, #{b_title},
-		#{bl_num},1)
+		insert into boardlist (u_id, b_title, b_date, b_num, b_content, bl_num)
+		values (#{u_id}, #{b_title}, sysdate(), 1, #{b_content}, #{bl_num})
 	</insert>
 
 	<!-- 게시글 상세정보 -->
 
 	<select id="detail" resultType="com.spring.cswiki.dto.BoardVO">
 		select b_content, b_date, b_num,
-		b_title, bl_num, u_id, p_id
+		b_title, bl_num, u_id
 		from boardlist where bl_num = #{bl_num}
 	</select>
 	

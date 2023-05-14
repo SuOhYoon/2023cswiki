@@ -16,5 +16,5 @@ public interface DocService {
 	public void delete(int d_num);
 	public void acl(DocDTO dto);
 	public void aclwipe(DocDTO dto);
-	public List<DocDTO> search(String d_title, int d_num);
+	public DocDTO search(String d_title);
 }

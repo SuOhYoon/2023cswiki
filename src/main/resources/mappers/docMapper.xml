@@ -76,7 +76,7 @@ VALUES (null, 1, 2, 2, 2, #{d_title}, #{d_content}, null, null);
     
     <!-- 문서 검색 -->
     <select id="search" resultType="com.spring.cswiki.dto.DocDTO">
-    	select * from doc where d_title like concat('%', #{d_title}, '%')
+    	SELECT d_title, d_num, d_content FROM doc WHERE d_title like concat('%', #{d_title}, '%')
     	order by d_num desc
     </select>
 </mapper>

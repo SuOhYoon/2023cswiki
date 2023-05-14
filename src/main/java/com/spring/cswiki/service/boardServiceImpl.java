@@ -13,6 +13,11 @@ public class boardServiceImpl implements boardService {
 	@Inject
 	private boardDAO dao;
 
+	@Override
+	public List<BoardVO> board() {
+		// TODO Auto-generated method stub
+		return dao.board();
+	}
 	// �쉶�썝 紐⑸줉
 	@Override
 	public List<BoardVO> list() {

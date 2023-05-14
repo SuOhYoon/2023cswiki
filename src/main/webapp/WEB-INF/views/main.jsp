@@ -8,7 +8,9 @@
         <meta charset="utf-8"/>
         <title>CS위키</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?1" />
-        <link rel="stylesheet" href="${path}/resources/css/main.css?4">
+        <link rel="stylesheet" href="${path}/resources/css/main.css?5">
+        <link rel="stylesheet" href="${path}/resources/css/header.css">
+        <link rel="stylesheet" href="${path}/resources/css/nav.css">
     </head>
     <body>
 	    <script>
@@ -18,64 +20,8 @@
 			 location.href = "/doc/search" + "&title=" + title;
 		 };
 		</script>
-        <header id="header">
-            <div class="center-align"> <!-- 가운데 정렬용 div -->
-                <div id="header-top">
-                    <c:choose>
-						<c:when test="${not empty sessionScope.member}">
-							<div>
-								<span>${member.name}님 환영합니다.</span>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<p>Beta 1.0</p>
-						</c:otherwise>
-					</c:choose>
-                </div>
-                <div id="header-search" style="clear:both">
-                    <a href="${path}/">
-                        <h1>
-                            <span>CS위키</span>
-                        </h1>
-                    </a>
-                    <h2 class="blind">검색창</h2>
-                    <fieldset>
-                        <legend class="blind">검색</legend>
-                        <input type="text" name="d_title" />
-                        <button type="button" id="searchBtn">
-                            <span class="blind">검색</span>
-                            <span id="search-image"></span>
-                        </button>
-                    </fieldset>
-                </div>
-            </div>
-        </header>
-        <nav>
-        	<c:choose>
-        		<c:when test="${member.p_id >= 3}">
-        			<div class="center-align relative">
-		                <ul> <!-- unordered list --> <!-- ol 태그도 있어요 ordered list -->
-		                  <li><a href='<c:url value='/doc/create'/>'>문서 만들기</a></li> <!-- list item -->
-		                  <li><a href='<c:url value='/doc/list'/>'>문서 목록</a></li> <!-- list item -->
-		                  <li><a href='<c:url value='/board/list'/>'>게시판</a></li> <!-- list item -->
-		                  <li><a href="">도움말</a></li> <!-- list item -->
-		                  <li><a href='<c:url value='/member/admin'/>'>관리</a></li> <!-- list item -->
-		                </ul>
-		            </div>
-        		</c:when>
-        		<c:otherwise>
-        			<div class="center-align relative">
-		                <ul> <!-- unordered list --> <!-- ol 태그도 있어요 ordered list -->
-		                  <li><a href='<c:url value='/doc/create'/>'>문서 만들기</a></li> <!-- list item -->
-		                  <li><a href='<c:url value='/doc/list'/>'>문서 목록</a></li> <!-- list item -->
-		                  <li><a href='<c:url value='/board/list'/>'>게시판</a></li> <!-- list item -->
-		                  <li><a href="">도움말</a></li> <!-- list item -->
-		                </ul>
-		            </div>
-        		</c:otherwise>
-        	</c:choose>
-            
-        </nav>
+        <%@ include file ="header.jsp" %>
+        <%@ include file ="nav.jsp" %>
         <main>
             <div id="welcome">
                 <div id="welcome_inner">
@@ -115,7 +61,24 @@
                     +more
                 </div>
             </div>
-            <div id="help">규정/도움말</div>
+            <div id="help">도움말 목록
+            	<div id="help_area">
+            		<ul>
+            			<li><a>문서 작성 도움말</a></li>
+            			<li><a>차단 소명 도움말</a></li>
+            			<li><a>문법 도움말</a></li>
+            			<li><a>권리침해 도움말</a></li>
+            			<li><a>FAQ</a></li>
+            		</ul>
+            	</div>
+            	<div id="rule_area">규정/운영
+            		<ul>
+            			<li><a>기본 규정</a></li>
+            			<li><a href="${path}/doc/doc?d_title=이용자 관리 방침">이용자 관리 방침</a> | <a href="${path}/doc/doc?d_title=운영 관리 방침">운영 관리 방침</a> | <a href="${path}/doc/doc?d_title=문서 관리 방침">문서 관리 방침</a></li>
+            			<li><a>역대 운영진</a> | <a>관리 도움말</a> | <a>운영회의</a></li>
+            		</ul>
+            	</div>
+            </div>
             <div id="notice">공지사항</div>
         </main>
         <footer class="footer">

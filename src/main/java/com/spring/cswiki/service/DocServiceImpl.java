@@ -68,8 +68,7 @@ public class DocServiceImpl implements DocService {
 	}
 	
 	@Override
-	public List<DocDTO> search(String d_title, int d_num) {
-		// TODO Auto-generated method stub
-		return dao.search(d_title, d_num);
+	public DocDTO search(String d_title) {
+		return dao.search(d_title);
 	}
 }

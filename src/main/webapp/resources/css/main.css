@@ -64,6 +64,15 @@ header{
     line-height: 22px;
 }
 
+#header-top span a{
+    text-decoration:none;
+    color:inherit;
+}
+
+#header-top span a:hover{
+    color:skyblue;
+}
+
 #header-search{
     clear:both;
 }

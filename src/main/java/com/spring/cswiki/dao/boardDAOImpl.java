@@ -14,31 +14,35 @@ public class boardDAOImpl implements boardDAO {
 
 	private static String namespace = "com.spring.cswiki.mappers.board";
 
-	// °Ô½Ã±Û ¸ñ·Ï
-	// @Override
+	@Override
+	public List<BoardVO> board() {
+		// TODO Auto-generated method stub
+		return sql.selectList(namespace + ".list");
+	}
+	@Override
 	public List<BoardVO> list() {
 		return sql.selectList(namespace + ".list");
 	}
 
-	// °Ô½Ã±Û µî·Ï
+	// ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½
 	@Override
 	public void create(BoardVO vo) {
 		sql.insert(namespace + ".create", vo);
 	}
 
-	// °Ô½Ã¹° »ó¼¼º¸±â ºÒ·¯¿À±â
+	// ï¿½Ô½Ã¹ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public BoardVO detail(int bl_num) {
 		return sql.selectOne(namespace + ".detail", bl_num);
 	}
 
-	// °Ô½Ã¹° ¼öÁ¤
+	// ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public void update(BoardVO vo) {
 		sql.update(namespace + ".update", vo);
 	}
 	
-	// °Ô½Ã±Û »èÁ¦
+	// ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public void delete(int bl_num) {
 		sql.delete(namespace + ".delete", bl_num);

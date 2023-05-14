@@ -5,43 +5,57 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-
 <head>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<meta charset="UTF-8">
-<title>list</title>
+	<link rel="stylesheet" href="${path}/resources/css/boardlist.css">
+	<meta charset="UTF-8">
+	<title>신고게시판</title>
 </head>
 <body>
-	<form name="userForm">
-		<h1>List page</h1>
-		<table>
-			<thead>
-				<tr>
-					<th scope="col">내용</th>
-					<th scope="col">날짜</th>
-					<th scope="col">게시글 제목</th>
-					<th scope="col">게시글 번호</th>
-				</tr>
-			</thead>
-
+	<header id="header">
+		<div class="center-align"> <!-- 가운데 정렬용 div -->
+			<div id="header-top">
+				<c:choose>
+					<c:when test="${not empty sessionScope.member}">
+						<div>
+							<span>${member.name}님 환영합니다. | <a href="${path}/member/logout">로그아웃</a><span>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<span><a href="${path}/member/login">로그인</a><span>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</div>
+	</header>
+	<nav>
+		<div class="center-align relative">
+			<ul> <!-- unordered list --> <!-- ol 태그도 있어요 ordered list -->
+				<li><a>CS위키 게시판</a></li> <!-- list item -->
+				<li><a>자유게시판</a></li> <!-- list item -->
+				<li><a>문의게시판</a></li> <!-- list item -->
+				<li><a>신고게시판</a></li> <!-- list item -->
+				<li><a>위키로 이동</a></li> <!-- list item -->
+			</ul>
+		</div>
+	</nav>
+	<main>
+		<h1>신고게시판</h1>
+		<table class="table">
 			<tbody>
 				<c:forEach items="${list}" var="list">
-					<tr>
-						<td class="text_ct">${list.b_content}&nbsp;</td>
-						<td class="text_ct"><fmt:formatDate value="${list.b_date}"
-								pattern="yyyy/MM/dd" /></td>
-						<td class="text_ct"><a
-							href="${path}/board/detail?bl_num=${list.bl_num}">${list.b_title}&nbsp;</a></td>
-						<td class="text_ct">${list.bl_num}&nbsp;</td>
-
-
+					<tr class="tr">
+						<td><input type="checkbox"></td>
+						<td>${list.bl_num}&nbsp;</td>
+						<td><a href="${path}/board/detail?bl_num=${list.bl_num}">${list.b_title}&nbsp;</a></td>
+						<td><fmt:formatDate value="${list.b_date}" pattern="yyyy-MM-dd HH:mm" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<a href="<c:url value='/board/create'/>" role="button"
-			class="btn btn-outline-info">글쓰기</a>
-	</form>
+		<div class="button-group">
+			<button class="button button-write"><a href="<c:url value='/board/create'/>">글쓰기</a></button>
+			<button class="button button-delete">삭제</button>
+		</div>
+	</main>
 </body>
 </html>

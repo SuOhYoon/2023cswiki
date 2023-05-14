@@ -6,7 +6,6 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.spring.cswiki.dto.BigCategoryVO;
 import com.spring.cswiki.dto.DocDTO;
 import com.spring.cswiki.dto.SmallCategoryVO;
-import com.spring.cswiki.dao.DocDAO;
 import com.spring.cswiki.service.DocService;
 
 import org.apache.commons.lang3.StringUtils;
@@ -116,7 +114,7 @@ public class DocController {
        return "doc/s_category";
     }
 	
-	// 
+	// 소분류별 문서 보기
 	@RequestMapping(value="/doc_list", method=RequestMethod.GET) //url mapping
     public String getdoc_list(Model model, @RequestParam("s_ca_num") int s_ca_num) throws Exception{
 		List<DocDTO> doc_list = service.doc_list(s_ca_num);
@@ -127,12 +125,18 @@ public class DocController {
 	
 	 // 문서 본문으로 이동
     @RequestMapping(value = "/doc", method = RequestMethod.GET)
-    public String getdoc(Model model, Integer d_num) throws Exception {
-       DocDTO doc = service.doc(d_num);
-       model.addAttribute("doc", doc);
+    public String getdoc(Model model, @RequestParam(required = false) Integer d_num, @RequestParam(required = false) String d_title) throws Exception {
+    	if (d_num != null) {
+            DocDTO doc = service.doc(d_num);
+            model.addAttribute("doc", doc);
+        } else if (d_title != null) {
+            DocDTO doc = service.search(d_title);
+            model.addAttribute("doc", doc);
+            model.addAttribute("d_title", d_title);
+        }
        return "doc/doc";
     }
-    
+
 	// 문서 작성 페이지로 이동
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String getcreate() throws Exception {
@@ -145,9 +149,6 @@ public class DocController {
     	service.create(dto);
        return "redirect:list";
     }
-    
-    
-   
     
     // 문서 편집창으로 이동
     @RequestMapping(value= "/edit", method = RequestMethod.GET)
@@ -184,18 +185,5 @@ public class DocController {
     public String postacl(DocDTO dto) throws Exception{
     	service.acl(dto);
     	return "doc/acl";
-    }
-    
-    // 문서 검색
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public void getsearch(Model model, @RequestParam("d_num") int d_num, @RequestParam(value = "title",required = false, defaultValue = "") String title
-      ) throws Exception {
-     
-     List<DocDTO> search = null; 
-     //list = service.listPage(page.getDisplayPost(), page.getPostNum());
-     search = service.search(title, d_num);
-     
-     model.addAttribute("search", search);
-     
     }
 }

@@ -1,51 +1,78 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<link rel="stylesheet"/>
-<meta charset="UTF-8">
-<title>list</title>
+	<link href="/src/main/webapp/resources/css/boardlist.css" rel="stylesheet"/>
+	<meta charset="UTF-8">
+	<title>신고게시판</title>
 </head>
 <body>
-	<form name="userForm">
-		<h1>목록</h1>
-		<table>
-			<thead>
-				<tr>
-					<th scope="col">b_content</th>
-					<th scope="col">b_date</th>
-					<th scope="col">b_num</th>
-					<th scope="col">b_title</th>
-					<th scope="col">bl_num</th>
-					<th scope="col">hashtag1</th>
-					<th scope="col">hashtag2</th>
-					<th scope="col">hashtag3</th>
-					<th scope="col">hashtag4</th>
-					<th scope="col">hashtag5</th>
-					<th scope="col">p_id</th>
-					<th scope="col">u_id</th>
-				</tr>
-			</thead>
-
+	<header id="header">
+		<div class="center-align"> <!-- 가운데 정렬용 div -->
+			<div id="header-top">
+				<c:choose>
+					<c:when test="${not empty sessionScope.member}">
+						<div>
+							<span>${member.name}님 환영합니다. | <a href="${path}/member/logout">로그아웃</a><span>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<span><a href="${path}/member/login">로그인</a><span>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</div>
+	</header>
+	<nav>
+		<div class="center-align relative">
+			<ul> <!-- unordered list --> <!-- ol 태그도 있어요 ordered list -->
+				<li><a>CS위키 게시판</a></li> <!-- list item -->
+				<li><a>자유게시판</a></li> <!-- list item -->
+				<li><a>문의게시판</a></li> <!-- list item -->
+				<li><a>신고게시판</a></li> <!-- list item -->
+				<li><a>위키로 이동</a></li> <!-- list item -->
+			</ul>
+		</div>
+	</nav>
+	<main>
+		<h1>신고게시판</h1>
+		<table class="table">
 			<tbody>
 				<c:forEach items="${list}" var="list">
+					<tr class="tr">
+						<td><input type="checkbox"></td>
+						<td>1</td>
+						<td>테스트</td>
+						<td>관리자</td>
+						<td>2022-09-22 09:00 KST</td>
+					</tr>
 					<tr>
-						<td class="text_ct">${list.b_content}&nbsp;</td>
-						<td class="text_ct"><fmt:formatDate value="${list.b_date}"
-								pattern="yyyy/MM/dd" /></td>
-						<td class="text_ct">${list.b_title}&nbsp;</td>
-						<td class="text_ct">${list.bl_num}&nbsp;</td>
-						<td class="text_ct">${list.hashtag1}&nbsp;</td>
-						<td class="text_ct">${list.hashtag2}&nbsp;</td>
-						<td class="text_ct">${list.hashtag3}&nbsp;</td>
-						<td class="text_ct">${list.hashtag4}&nbsp;</td>
-						<td class="text_ct">${list.hashtag5}&nbsp;</td>
-						<td class="text_ct">${list.p_id}&nbsp;</td>
-						<td class="text_ct">${list.u_id}&nbsp;</td>
+						<td><input type="checkbox"></td>
+						<td>1</td>
+						<td>테스트</td>
+						<td>관리자</td>
+						<td>2022-09-22 09:00 KST</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>1</td>
+						<td>테스트</td>
+						<td>관리자</td>
+						<td>2022-09-22 09:00 KST</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>1</td>
+						<td>테스트</td>
+						<td>관리자</td>
+						<td>2022-09-22 09:00 KST</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-	</form>
+		<div class="button-group">
+			<button class="button button-write">글쓰기</button>
+			<button class="button button-delete">삭제</button>
+		</div>
+	</main>
 </body>
 </html>

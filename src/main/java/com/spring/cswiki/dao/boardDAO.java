@@ -4,14 +4,11 @@ import java.util.List;
 import com.spring.cswiki.dto.BoardVO;
 
 public interface boardDAO {
-	public List<BoardVO> list();// Á¶È¸
-
-	public void create(BoardVO vo); // ¾²±â
-
-	public BoardVO detail(int bl_num); // »ó¼¼º¸±â
-
-	public void update(BoardVO vo); // ¼öÁ¤ÇÏ±â
-	
-	public void delete(int bl_num); // »èÁ¦ÇÏ±â
+	public List<BoardVO> board(); // ê²Œì‹œíŒë³„ ëª©ë¡ ì „ì²´ ì¶œë ¥
+	public List<BoardVO> list();// ê²Œì‹œê¸€ ëª©ë¡ ì¶œë ¥
+	public void create(BoardVO vo); // ê¸€ ì‘ì„±
+	public BoardVO detail(int bl_num); // ê¸€ ìƒì„¸ì •ë³´
+	public void update(BoardVO vo); // ê¸€ ìˆ˜ì •
+	public void delete(int bl_num); // ê¸€ ì‚­ì œ
 
 }
