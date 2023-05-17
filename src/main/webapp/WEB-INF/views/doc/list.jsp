@@ -21,6 +21,9 @@
             <div id="list">
         		<div class="list_inner">
             	<h2>분류<h2>
+            	<c:if test="${member.p_id >= 2 }">
+            		<a href="${path}/doc/l-edit">수정</a>
+            	</c:if>
             		<div class="selectbox">
             			<c:forEach items="${list}" var="list">
                 		<ul>

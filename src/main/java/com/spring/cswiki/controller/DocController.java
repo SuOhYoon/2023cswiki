@@ -104,6 +104,14 @@ public class DocController {
 	    return modelAndView;
 	  }
 	
+	// 대분류 페이지 수정 화면 이동
+	@RequestMapping(value="/l-edit", method=RequestMethod.GET)
+	public ModelAndView getl_edit() throws Exception{
+		ModelAndView modelAndView = new ModelAndView("doc/l-edit");
+	    List<BigCategoryVO> list = service.list();
+	    modelAndView.addObject("list", list);
+	    return modelAndView;
+	}
 	// 소분류 페이지로 이동 및 소분류 보기
 	@RequestMapping(value = "/s_category", method = RequestMethod.GET)
     public String gets_category(Model model, @RequestParam("b_ca_num") int b_ca_num) throws Exception {
