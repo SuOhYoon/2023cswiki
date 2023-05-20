@@ -20,7 +20,7 @@
 			    <ul> <!-- unordered list --> <!-- ol 태그도 있어요 ordered list -->
 					<li><a href='<c:url value='/doc/create'/>'>문서 만들기</a></li> <!-- list item -->
 					<li><a href='<c:url value='/doc/list'/>'>문서 목록</a></li> <!-- list item -->
-					<li><a href='<c:url value='/board/b'/>'>게시판</a></li> <!-- list item -->
+					<li><a href='<c:url value='/board/list'/>'>게시판</a></li> <!-- list item -->
 					<li><a href="">도움말</a></li> <!-- list item -->
 			    </ul>
 			</div>

@@ -18,7 +18,7 @@
         <main>
             <div id="list">
 			   <div class="list_inner">
-			       <h2>소분류</h2>
+			       <h2>2단계 분류</h2>
 			       <div class="selectbox">
 			           <ul>
 			               <c:forEach items="${s_category}" var="s_category">

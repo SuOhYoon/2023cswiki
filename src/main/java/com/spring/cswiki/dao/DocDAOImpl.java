@@ -10,6 +10,8 @@ import com.spring.cswiki.dto.SmallCategoryVO;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
@@ -17,6 +19,8 @@ import org.springframework.stereotype.Repository;
 public class DocDAOImpl implements DocDAO {
 	@Inject
 	private SqlSession sql;
+	@Autowired
+	private SqlSessionFactory sqlSessionFactory;
 	
 	private static String namespace = "com.spring.cswiki.mappers.doc";
 	
@@ -73,5 +77,27 @@ public class DocDAOImpl implements DocDAO {
 	@Override
 	public DocDTO search(String d_title) {
 		return sql.selectOne(namespace + ".search", d_title);
+	}
+
+	@Override
+	public List<BigCategoryVO> getBigCategories() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+	    try {
+	      List<BigCategoryVO> bigCategoryVOs = sqlSession.selectList("getBigCategories");
+	      return bigCategoryVOs;
+	    } finally {
+	      sqlSession.close();
+	    }
+	}
+
+	@Override
+	public List<SmallCategoryVO> getSmallCategoriesByBigCategoryNum(int bigCategoryNum) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+        try {
+            List<SmallCategoryVO> smallCategoryVOs = sqlSession.selectList("getSmallCategoriesByBigCategoryNum", bigCategoryNum);
+            return smallCategoryVOs;
+        } finally {
+            sqlSession.close();
+        }
 	}
 }

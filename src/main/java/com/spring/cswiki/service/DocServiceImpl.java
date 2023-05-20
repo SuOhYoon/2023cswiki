@@ -71,4 +71,14 @@ public class DocServiceImpl implements DocService {
 	public DocDTO search(String d_title) {
 		return dao.search(d_title);
 	}
+
+	@Override
+	public List<BigCategoryVO> getBigCategories() {
+		return dao.getBigCategories();
+	}
+
+	@Override
+	public List<SmallCategoryVO> getSmallCategoriesByBigCategoryNum(int bigCategoryNum) {
+		return dao.getSmallCategoriesByBigCategoryNum(bigCategoryNum);
+	}
 }

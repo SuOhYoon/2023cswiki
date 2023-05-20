@@ -114,6 +114,14 @@ public class DocController {
        return "doc/s_category";
     }
 	
+	// 문서 카테고리 수정(관리자 전용)
+    @RequestMapping(value="/edit-c", method=RequestMethod.GET)
+    public String c_edit(Model model) {
+        List<BigCategoryVO> bigCategoryVOs = service.getBigCategories();
+        model.addAttribute("bigCategoryVOs", bigCategoryVOs);
+        return "doc/edit-c";
+    }
+	
 	// 소분류별 문서 보기
 	@RequestMapping(value="/doc_list", method=RequestMethod.GET) //url mapping
     public String getdoc_list(Model model, @RequestParam("s_ca_num") int s_ca_num) throws Exception{
@@ -180,7 +188,7 @@ public class DocController {
     	return "doc/acl";
     }
     
-    // 문서 ACL 수정 및 ACL화면 출력
+    // 문서 ACL 수정 및 ACL화면 출력(관리자 전용)
     @RequestMapping(value="/acl", method=RequestMethod.POST)
     public String postacl(DocDTO dto) throws Exception{
     	service.acl(dto);

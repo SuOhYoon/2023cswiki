@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.cswiki.dao.boardDAO;
 import com.spring.cswiki.dto.BoardVO;
+import com.spring.cswiki.dto.CommentVO;
 
 @Service
 public class boardServiceImpl implements boardService {
@@ -18,7 +19,7 @@ public class boardServiceImpl implements boardService {
 		// TODO Auto-generated method stub
 		return dao.board();
 	}
-	// �쉶�썝 紐⑸줉
+
 	@Override
 	public List<BoardVO> list() {
 		return dao.list();
@@ -29,20 +30,37 @@ public class boardServiceImpl implements boardService {
 		dao.create(vo);
 	}
 
-	// 게시물 상세보기 불러오기
 	@Override
 	public BoardVO detail(int bl_num) {
 		return dao.detail(bl_num);
 	}
 
-	// 게시물 수정
 	@Override
 	public void update(BoardVO vo) {
 		dao.update(vo);
 	}
 
-	// 게시물 삭제
 	public void delete(int bl_num) {
 		dao.delete(bl_num);
+	}
+	@Override
+	public List<CommentVO> comment(int bl_num) {
+		// TODO Auto-generated method stub
+		return dao.comment(bl_num);
+	}
+	@Override
+	public void commentw(CommentVO vo) {
+		dao.commentw(vo);
+	}
+
+	@Override
+	public void commentu(CommentVO vo) {
+		dao.commentu(vo);
+		
+	}
+
+	@Override
+	public void commentd(CommentVO vo) {
+		dao.commentd(vo);	
 	}
 }

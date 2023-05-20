@@ -27,23 +27,46 @@
 	</insert>
 
 	<!-- 게시글 상세정보 -->
-
 	<select id="detail" resultType="com.spring.cswiki.dto.BoardVO">
 		select b_content, b_date, b_num,
 		b_title, bl_num, u_id
 		from boardlist where bl_num = #{bl_num}
 	</select>
 	
-	<!-- 회원 정보 수정 -->
+	<!-- 게시글 수정 -->
 	<update id = "update">
 		update boardlist
 		set b_title=#{b_title}, b_content=#{b_content}, b_date=NOW()
 		where bl_num=#{bl_num}
 	</update>
 
-	<!-- 회원 삭제 -->
+	<!-- 게시글 삭제 -->
 	<delete id="delete">
 		delete from boardlist
 		where bl_num=#{bl_num}
+	</delete>
+	
+	<!-- 게시글 댓글 조회 -->
+	<select id="comment" resultType="com.spring.cswiki.dto.CommentVO">
+    	SELECT cm_num, bl_num, u_id, cm_date, cm_content FROM comment
+    	WHERE bl_num = #{bl_num}
+	</select>
+	
+	<!-- 게시글 댓글 작성 -->
+	<insert id="commentw">
+		INSERT INTO comment(bl_num, u_id, cm_content, cm_date) VALUES (#{bl_num}, #{u_id}, #{cm_content}, sysdate())
+	</insert>
+	
+	<!-- 게시글 댓글 수정 -->
+	<update id="commentu">
+		UPDATE comment
+		SET cm_content = #{cm_content}
+		WHERE cm_num = #{cm_num}
+	</update>
+	
+	<!-- 게시글 댓글 삭제 -->
+	<delete id="commentd">
+		DELETE from comment
+		WHERE cm_num = #{cm_num}
 	</delete>
 </mapper>

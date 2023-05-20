@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.spring.cswiki.dto.DocDTO;
 import com.spring.cswiki.dto.MemberDTO;
 import com.spring.cswiki.service.MemberService;
 

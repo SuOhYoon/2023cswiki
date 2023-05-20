@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="${path}/resources/css/boardlist.css">
+	<link rel="stylesheet" href="${path}/resources/css/boardlist.css?1">
 	<meta charset="UTF-8">
 	<title>신고게시판</title>
 </head>
@@ -31,9 +31,6 @@
 		<div class="center-align relative">
 			<ul> <!-- unordered list --> <!-- ol 태그도 있어요 ordered list -->
 				<li><a>CS위키 게시판</a></li> <!-- list item -->
-				<li><a>자유게시판</a></li> <!-- list item -->
-				<li><a>문의게시판</a></li> <!-- list item -->
-				<li><a>신고게시판</a></li> <!-- list item -->
 				<li><a>위키로 이동</a></li> <!-- list item -->
 			</ul>
 		</div>

@@ -20,16 +20,19 @@
         <main>
             <div id="list">
         		<div class="list_inner">
-            	<h2>분류<h2>
+            	<h2>1단계 분류<h2>
+            		<c:if test="${member.p_id > 2}">
+						<a href="${path}/doc/edit-c">분류 수정하기</a>
+					</c:if>
             		<div class="selectbox">
             			<c:forEach items="${list}" var="list">
-                		<ul>
-                    		<li>
-                    			<a href="${path}/doc/s_category?b_ca_num=${list.b_ca_num}">
-                    				<c:out value="${list.b_ca_name}"/>
-                				</a>
-               				</li>
-                		</ul> 
+	                		<ul>
+	                    		<li>
+	                    			<a href="${path}/doc/s_category?b_ca_num=${list.b_ca_num}">
+	                    				<c:out value="${list.b_ca_name}"/>
+	                				</a>
+	               				</li>
+	                		</ul> 
                 		</c:forEach>         
             		</div>
         		</div>
@@ -50,5 +53,8 @@
         <span class="text">All Rights Reserved.</span>
     </div>
     </footer>
+    <script>
+
+    </script>
     </body>
 </html>

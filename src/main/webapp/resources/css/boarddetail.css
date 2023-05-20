@@ -85,7 +85,7 @@ table {
 th, td{
     border-bottom: 1px solid #444444;
     padding: 10px;
-    text-align : left;
+    text-align : center;
 }
 
 .button-group {
@@ -109,4 +109,33 @@ th, td{
   
 .button-delete {
     background-color: blue;
+}
+
+#comment-area{
+    display: block;
+}
+
+#comment{
+	margin : 0 auto;
+	margin-top: 20px;
+	width : 1080px;
+	height:auto;
+	border : 1px solid black;
+}
+
+#comment-area ul{
+	margin : 0 auto;
+	padding-left : 0px;
+	display: inline-block;
+	list-style : none;
+}
+
+#comment p{
+	margin : 0;
+}
+
+.modify{
+	display: inline-block;
+	position:absolute;
+	left : 856px;
 }

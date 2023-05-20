@@ -4,6 +4,7 @@ public class SmallCategoryVO {
 	int s_ca_num;
 	int b_ca_num;
 	String s_ca_name;
+	int s_ca_avaliable;
 	
 	public int getS_ca_num() {
 		return s_ca_num;
@@ -24,6 +25,12 @@ public class SmallCategoryVO {
 	}
 	public void setS_ca_name(String s_ca_name) {
 		this.s_ca_name = s_ca_name;
+	}
+	public int getS_ca_avaliable() {
+		return s_ca_avaliable;
+	}
+	public void setS_ca_avaliable(int s_ca_avaliable) {
+		this.s_ca_avaliable = s_ca_avaliable;
 	}		
 }
 

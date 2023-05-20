@@ -17,4 +17,6 @@ public interface DocDAO {
 	public void acl(DocDTO dto); // acl 수정
 	public void aclwipe(DocDTO dto); // acl 삭제
 	public DocDTO search(String d_title); // 문서 검색
+	public List<BigCategoryVO> getBigCategories();
+	public List<SmallCategoryVO> getSmallCategoriesByBigCategoryNum(int bigCategoryNum);
 }
