@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="${path}/resources/css/doc_list.css?3">
         <link rel="stylesheet" href="${path}/resources/css/header.css">
         <link rel="stylesheet" href="${path}/resources/css/nav.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
         <%@ include file ="../header.jsp" %>
@@ -20,14 +21,15 @@
 			   <div class="list_inner">
 			       <h2>2단계 분류</h2>
 			       <div class="selectbox">
-			           <ul>
-			               <c:forEach items="${s_category}" var="s_category">
-			                   <li>
-				                   <a href="${path}/doc/doc_list?s_ca_num=${s_category.s_ca_num}">
-		                   		   		<c:out value="${s_category.s_ca_name}"/>
-		               			   </a>
-			                   </li>
-			               </c:forEach>
+			           <ul>  
+			           	   <li><a class="create">분류 만들기</a></li>
+			           	   <c:forEach items="${s_category}" var="s_category">
+		                   <li>
+			                   <a href="${path}/doc/doc_list?s_ca_num=${s_category.s_ca_num}">
+	                   		   		<c:out value="${s_category.s_ca_name}"/>
+	               			   </a>
+		                   </li>
+		                   </c:forEach>
 			            </ul>
 			        </div>
 			    </div>
@@ -48,5 +50,15 @@
         <span class="text">All Rights Reserved.</span>
     </div>
     </footer>
+    <script type="text/javascript">
+		$(".create").on("click", function(){
+			var b_ca_num = ${b_ca_num}
+			window.open(
+            	"${path}/doc/createsmallcategory?b_ca_num=" + b_ca_num,
+            	"Child",
+            	"width=500, height=300, top=500, left=1080"
+	        );
+		});
+	</script>
     </body>
 </html>

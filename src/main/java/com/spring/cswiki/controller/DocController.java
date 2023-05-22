@@ -95,7 +95,7 @@ public class DocController {
 	    }
 	    return null;
 	}
-	// 대분류 페이지로 이동 및 대분류 보기
+	// 1단계 분류 페이지로 이동 및 1단계 분류 보기
 	@RequestMapping(value="/list", method=RequestMethod.GET) //url mapping
 	public ModelAndView getBigCategoryList() {
 	    ModelAndView modelAndView = new ModelAndView("doc/list");
@@ -104,15 +104,21 @@ public class DocController {
 	    return modelAndView;
 	  }
 	
-	// 대분류 페이지 수정 화면 이동
-	@RequestMapping(value="/l-edit", method=RequestMethod.GET)
-	public ModelAndView getl_edit() throws Exception{
-		ModelAndView modelAndView = new ModelAndView("doc/l-edit");
-	    List<BigCategoryVO> list = service.list();
-	    modelAndView.addObject("list", list);
+	// 1단계 분류 추가 화면 띄우기
+	@RequestMapping(value="/createbigcategory", method=RequestMethod.GET)
+	public ModelAndView getcreatebigcategory() throws Exception{
+		ModelAndView modelAndView = new ModelAndView("doc/createbigcategory");
 	    return modelAndView;
 	}
-	// 소분류 페이지로 이동 및 소분류 보기
+	
+	// 1단계 분류 추가 
+	@RequestMapping(value="/createbigcategory", method=RequestMethod.POST)
+	public String postcreatebigcategory(BigCategoryVO vo) throws Exception {
+    	service.createbigcategory(vo);
+       return "redirect:list";
+    }
+	
+	// 2단계 분류 페이지로 이동 및 2단계 분류 보기
 	@RequestMapping(value = "/s_category", method = RequestMethod.GET)
     public String gets_category(Model model, @RequestParam("b_ca_num") int b_ca_num) throws Exception {
 	   List<SmallCategoryVO> s_category = service.s_category(b_ca_num);
@@ -122,15 +128,7 @@ public class DocController {
        return "doc/s_category";
     }
 	
-	// 문서 카테고리 수정(관리자 전용)
-    @RequestMapping(value="/edit-c", method=RequestMethod.GET)
-    public String c_edit(Model model) {
-        List<BigCategoryVO> bigCategoryVOs = service.getBigCategories();
-        model.addAttribute("bigCategoryVOs", bigCategoryVOs);
-        return "doc/edit-c";
-    }
-	
-	// 소분류별 문서 보기
+	// 2단계 분류별 문서 보기
 	@RequestMapping(value="/doc_list", method=RequestMethod.GET) //url mapping
     public String getdoc_list(Model model, @RequestParam("s_ca_num") int s_ca_num) throws Exception{
 		List<DocDTO> doc_list = service.doc_list(s_ca_num);
@@ -138,8 +136,21 @@ public class DocController {
 		model.addAttribute("b_ca_num", s_ca_num);
 		return "doc/doc_list";
     }
+	// 2단계 분류 추가 화면 띄우기
+	@RequestMapping(value="/createsmallcategory", method=RequestMethod.GET)
+		public String getcreatesmallcategory(Model model, @RequestParam("b_ca_num") int b_ca_num) throws Exception{	
+		model.addAttribute("b_ca_num", b_ca_num);
+		return "doc/createsmallcategory";
+	}
 	
-	 // 문서 본문으로 이동
+	// 2단계 분류 추가 
+	@RequestMapping(value="/createsmallcategory", method=RequestMethod.POST)
+	public String postsmallbigcategory(SmallCategoryVO vo) throws Exception {
+    service.createsmallcategory(vo);
+       return "redirect:list";
+    }
+		
+	// 문서 본문으로 이동
     @RequestMapping(value = "/doc", method = RequestMethod.GET)
     public String getdoc(Model model, @RequestParam(required = false) Integer d_num, @RequestParam(required = false) String d_title) throws Exception {
     	if (d_num != null) {
@@ -162,7 +173,7 @@ public class DocController {
     // 문서 작성
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String postcreate(DocDTO dto) throws Exception {
-    	service.create(dto);
+	   service.create(dto);
        return "redirect:list";
     }
     

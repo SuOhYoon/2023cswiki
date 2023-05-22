@@ -17,6 +17,6 @@ public interface DocService {
 	public void acl(DocDTO dto);
 	public void aclwipe(DocDTO dto);
 	public DocDTO search(String d_title);
-	public List<BigCategoryVO> getBigCategories();
-	public List<SmallCategoryVO> getSmallCategoriesByBigCategoryNum(int bigCategoryNum);
+	public void createbigcategory(BigCategoryVO vo);
+	public void createsmallcategory(SmallCategoryVO vo);
 }

@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="${path}/resources/css/nav.css">
         <link rel="stylesheet" href="${path}/resources/css/header.css">
         <link rel="stylesheet" href="${path}/resources/css/nav.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
         <%@ include file ="../header.jsp" %>
@@ -21,19 +22,17 @@
             <div id="list">
         		<div class="list_inner">
             	<h2>1단계 분류<h2>
-            		<c:if test="${member.p_id > 2}">
-						<a href="${path}/doc/edit-c">분류 수정하기</a>
-					</c:if>
-            		<div class="selectbox">
-            			<c:forEach items="${list}" var="list">
+            		<div class="selectbox">		
 	                		<ul>
-	                    		<li>
+	                			<li><a class="create">분류 만들기</a></li>
+	                			<c:forEach items="${list}" var="list">
+ 								<li>
 	                    			<a href="${path}/doc/s_category?b_ca_num=${list.b_ca_num}">
 	                    				<c:out value="${list.b_ca_name}"/>
 	                				</a>
 	               				</li>
-	                		</ul> 
-                		</c:forEach>         
+	               				</c:forEach> 
+	                		</ul>                 		        
             		</div>
         		</div>
     		</div>
@@ -53,8 +52,14 @@
         <span class="text">All Rights Reserved.</span>
     </div>
     </footer>
-    <script>
-
-    </script>
+    <script type="text/javascript">
+		$(".create").on("click", function(){
+			window.open(
+            	"${path}/doc/createbigcategory",
+            	"Child",
+            	"width=500, height=300, top=500, left=1080"
+	        );
+		});
+	</script>
     </body>
 </html>

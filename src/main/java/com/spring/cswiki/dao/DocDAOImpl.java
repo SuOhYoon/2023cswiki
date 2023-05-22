@@ -1,6 +1,5 @@
 package com.spring.cswiki.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.spring.cswiki.dto.BigCategoryVO;
@@ -19,8 +18,6 @@ import org.springframework.stereotype.Repository;
 public class DocDAOImpl implements DocDAO {
 	@Inject
 	private SqlSession sql;
-	@Autowired
-	private SqlSessionFactory sqlSessionFactory;
 	
 	private static String namespace = "com.spring.cswiki.mappers.doc";
 	
@@ -80,24 +77,12 @@ public class DocDAOImpl implements DocDAO {
 	}
 
 	@Override
-	public List<BigCategoryVO> getBigCategories() {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-	    try {
-	      List<BigCategoryVO> bigCategoryVOs = sqlSession.selectList("getBigCategories");
-	      return bigCategoryVOs;
-	    } finally {
-	      sqlSession.close();
-	    }
+	public void createbigcategory(BigCategoryVO vo) {
+		sql.insert(namespace + ".createbigcategory", vo);	
 	}
 
 	@Override
-	public List<SmallCategoryVO> getSmallCategoriesByBigCategoryNum(int bigCategoryNum) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-        try {
-            List<SmallCategoryVO> smallCategoryVOs = sqlSession.selectList("getSmallCategoriesByBigCategoryNum", bigCategoryNum);
-            return smallCategoryVOs;
-        } finally {
-            sqlSession.close();
-        }
+	public void createsmallcategory(SmallCategoryVO vo) {
+		sql.insert(namespace + ".createsmallcategory", vo);	
 	}
 }

@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.cswiki.mappers.doc">
-	<!-- 대분류 -->
+	<!-- 1단계 분류 -->
 	<select id="list" resultType="com.spring.cswiki.dto.BigCategoryVO">
 		SELECT
 			b_ca_name, b_ca_num
@@ -15,21 +15,16 @@
 		SELECT s_ca_name, s_ca_num FROM small_category WHERE b_ca_num = #{b_ca_num} and s_ca_avaliable = 1
 	</select>
 	
-	<!-- 대분류 보기(2단 카테고리) -->
-	<select id="getBigCategories" resultType="com.spring.cswiki.dto.BigCategoryVO">
-	    SELECT b.b_ca_num, b.b_ca_name
-	    FROM big_category b
-	    ORDER BY b.b_ca_name;
-  	</select>
-  	
-	<!-- 소분류 보기(2단 카테고리) -->
-  	<select id="getSmallCategoriesByBigCategoryNum" resultType="com.spring.cswiki.dto.SmallCategoryVO">
-	    SELECT s.s_ca_num, s.s_ca_name
-	    FROM small_category s
-	    WHERE s.b_ca_num = #{bigCategoryNum}
-	    ORDER BY s.s_ca_name;
-  	</select>
-    
+	<!-- 1단계 분류 추가 -->
+    <insert id="createbigcategory" useGeneratedKeys="true" keyProperty="b_ca_num">
+    	INSERT INTO big_category (b_ca_name, b_ca_avaliable)
+    	VALUES (#{b_ca_name}, 1)
+    </insert>
+    <!-- 2단계 분류 추가 -->
+    <insert id="createsmallcategory" useGeneratedKeys="true" keyProperty="s_ca_num">
+    	INSERT INTO small_category (s_ca_name, b_ca_num, s_ca_avaliable)
+    	VALUES (#{s_ca_name}, #{b_ca_num}, 1)
+    </insert>
 	<!-- 문서 리스트 -->
 	<select id="doc_list" resultType="com.spring.cswiki.dto.DocDTO">
 		SELECT d_title, d_num FROM doc WHERE s_ca_num = #{s_ca_num}
@@ -43,7 +38,7 @@
 	<!-- 새 문서 작성 -->
 	<insert id="create" useGeneratedKeys="true" keyProperty="d_num">
 		INSERT INTO doc (s_ca_num, p_read, p_insert, p_update, p_delete, d_title, d_content, next, prev)
-VALUES (null, 1, 2, 2, 2, #{d_title}, #{d_content}, null, null);
+		VALUES (null, 1, 2, 2, 2, #{d_title}, #{d_content}, null, null);
     </insert> 
     
     <!-- 새 문서 작성 시 역사 생성 -->

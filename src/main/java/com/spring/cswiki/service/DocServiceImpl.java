@@ -73,12 +73,12 @@ public class DocServiceImpl implements DocService {
 	}
 
 	@Override
-	public List<BigCategoryVO> getBigCategories() {
-		return dao.getBigCategories();
+	public void createbigcategory(BigCategoryVO vo) {
+		dao.createbigcategory(vo);		
 	}
 
 	@Override
-	public List<SmallCategoryVO> getSmallCategoriesByBigCategoryNum(int bigCategoryNum) {
-		return dao.getSmallCategoriesByBigCategoryNum(bigCategoryNum);
+	public void createsmallcategory(SmallCategoryVO vo) {
+		dao.createsmallcategory(vo);
 	}
 }
