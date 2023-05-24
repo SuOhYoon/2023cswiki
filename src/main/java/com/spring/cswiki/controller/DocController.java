@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.cswiki.dto.BigCategoryVO;
 import com.spring.cswiki.dto.DocDTO;
+import com.spring.cswiki.dto.DocHistoryDTO;
 import com.spring.cswiki.dto.SmallCategoryVO;
 import com.spring.cswiki.service.DocService;
 
@@ -173,8 +174,12 @@ public class DocController {
     // 문서 작성
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String postcreate(DocDTO dto) throws Exception {
-	   service.create(dto);
-       return "redirect:list";
+       int result = service.create(dto);
+       if(result > 0) {
+    	   return "redirect:doc?d_num=" + dto.getD_num();
+       } else {
+    	   return "redirect:list";
+       }
     }
     
     // 문서 편집창으로 이동
@@ -188,9 +193,13 @@ public class DocController {
     // 문서 편집 저장 및 목록 이동
     @RequestMapping(value="/edit", method=RequestMethod.POST)
     public String postedit(DocDTO dto) throws Exception{
-    	service.edit(dto);
-    	return "redirect:list";
-    }
+    	int result = service.edit(dto);
+        if(result > 0) {
+     	   return "redirect:doc?d_num=" + dto.getD_num();
+        } else {
+     	   return "redirect:list";
+        }
+     }
     
     // 문서 삭제 및 목록 이동
     @RequestMapping(value="/delete", method=RequestMethod.GET)
@@ -209,8 +218,26 @@ public class DocController {
     
     // 문서 ACL 수정 및 ACL화면 출력(관리자 전용)
     @RequestMapping(value="/acl", method=RequestMethod.POST)
-    public String postacl(DocDTO dto) throws Exception{
+    public String postacl(DocDTO dto, int d_num) throws Exception{
     	service.acl(dto);
-    	return "doc/acl";
+    	return "redirect:acl?d_num=" + d_num;
+    }
+    
+    // 문서 역사 보기
+    @RequestMapping("/doc_history")
+    public String getDocumentHistory(@RequestParam("d_num") int d_num, Model model) {
+        List<DocHistoryDTO> historyList = service.getDocHistory(d_num);
+        DocDTO doc = service.doc(d_num);
+        model.addAttribute("historyList", historyList);
+        model.addAttribute("doc", doc);
+        return "doc/doc_history";
+    }
+    
+    // 버전 별 문서 내용 보기
+    @RequestMapping("/doc_version")
+    public String version(@RequestParam("d_num") int d_num, @RequestParam("d_version") String d_version, Model model) {
+		DocDTO version = service.version(d_num, d_version);
+		model.addAttribute("version", version);
+    	return "doc/doc_version";  	
     }
 }

@@ -25,7 +25,7 @@
 	                    <li>
 						    <a href="${path}/doc/edit?d_num=${doc.d_num}">편집</a>
 	                    </li>
-	                    <li><a>역사</a></li>
+	                    <li><a href="${path}/doc/doc_history?d_num=${doc.d_num}">역사</a></li>
 	                    <li>
 							<a href="${path}/doc/acl?d_num=${doc.d_num}">ACL</a>
 	                    </li>

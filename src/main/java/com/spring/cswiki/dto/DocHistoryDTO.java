@@ -7,9 +7,11 @@ public class DocHistoryDTO {
 	int d_num;
 	int d_version;
 	String u_id;
-	Date date;
-	Time time;
+	Date d_date;
+	Time d_time;
 	String d_summary;
+	String d_content;
+	
 	public int getD_num() {
 		return d_num;
 	}
@@ -28,17 +30,19 @@ public class DocHistoryDTO {
 	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
-	public Date getDate() {
-		return date;
+	
+	public Date getD_date() {
+		return d_date;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setD_date(Date d_date) {
+		this.d_date = d_date;
 	}
-	public Time getTime() {
-		return time;
+	
+	public Time getD_time() {
+		return d_time;
 	}
-	public void setTime(Time time) {
-		this.time = time;
+	public void setD_time(Time d_time) {
+		this.d_time = d_time;
 	}
 	public String getD_summary() {
 		return d_summary;
@@ -46,4 +50,10 @@ public class DocHistoryDTO {
 	public void setD_summary(String d_summary) {
 		this.d_summary = d_summary;
 	}
+	public String getD_content() {
+		return d_content;
+	}
+	public void setD_content(String d_content) {
+		this.d_content = d_content;
+	}	
 }
