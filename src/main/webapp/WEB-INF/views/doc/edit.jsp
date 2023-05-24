@@ -20,6 +20,7 @@
 				문서 제목: <input type="text" name="d_title" value="${doc.d_title}"><br>
 			    <textarea name="d_content" id="editor">${doc.d_content}</textarea>
 			    <br>
+			         편집 요약 : <input type="text" name="d_summary"><br>
 			    <button type="submit">확인</button>
 			    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 		 	 </form>	

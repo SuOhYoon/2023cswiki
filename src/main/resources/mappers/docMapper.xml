@@ -10,7 +10,7 @@
 		FROM big_category WHERE b_ca_avaliable = 1
 	</select>
 	
-	<!-- 소분류 -->
+	<!-- 2단계 분류 -->
 	<select id="s_category" resultType="com.spring.cswiki.dto.SmallCategoryVO">
 		SELECT s_ca_name, s_ca_num FROM small_category WHERE b_ca_num = #{b_ca_num} and s_ca_avaliable = 1
 	</select>
@@ -27,7 +27,7 @@
     </insert>
 	<!-- 문서 리스트 -->
 	<select id="doc_list" resultType="com.spring.cswiki.dto.DocDTO">
-		SELECT d_title, d_num FROM doc WHERE s_ca_num = #{s_ca_num}
+		SELECT d_title, d_num FROM doc WHERE s_ca_num = #{s_ca_num} AND d_available = 1
 	</select>
 	
 	<!-- 문서 상세정보 -->
@@ -37,16 +37,14 @@
     
 	<!-- 새 문서 작성 -->
 	<insert id="create" useGeneratedKeys="true" keyProperty="d_num">
-		INSERT INTO doc (s_ca_num, p_read, p_insert, p_update, p_delete, d_title, d_content, next, prev)
-		VALUES (null, 1, 2, 2, 2, #{d_title}, #{d_content}, null, null);
+		INSERT INTO doc (s_ca_num, p_read, p_insert, p_update, p_delete, d_title, d_content, d_summary, d_available, next, prev)
+		VALUES (null, 0, 2, 2, 2, #{d_title}, #{d_content}, #{d_summary}, 1, null, null);
     </insert> 
     
     <!-- 새 문서 작성 시 역사 생성 -->
 	<insert id="createhistory" useGeneratedKeys="true" keyProperty="d_num">
-		INSERT INTO doc_history (d_version, d_num, d_date, d_time)
-		SELECT 1, d_num, CURDATE(), CURTIME()
-		FROM doc
-		WHERE d_title = 'C';
+		INSERT INTO doc_history (d_version, d_num, d_date, d_summary, d_content)
+        VALUES (#{d_version}, #{d_num}, SYSDATE(), #{d_summary}, #{d_content})
     </insert>
     
     <!-- 문서 편집 -->
@@ -75,23 +73,40 @@
    	WHERE d_num = #{d_num}
     </update>
     
-    <!-- 문서 편집시 역사 업데이트 -->
+    <!-- 문서 편집시 역사 새로 삽입 -->
     <insert id="edithistory">
-    	INSERT INTO doc_history (d_version, d_num, d_date, d_time)
-		SELECT COALESCE(MAX(d_version), 0) + 1, d_num, CURDATE(), CURTIME()
-		FROM doc_history
-		WHERE d_num = (SELECT d_num FROM doc WHERE d_title = 'C++');
-    </insert>
-    
+    INSERT INTO doc_history (d_num, d_version, d_date, d_summary, d_content)
+    SELECT #{d_num}, (SELECT IFNULL(MAX(d_version), 0) FROM doc_history WHERE d_num = #{d_num}) + 1, SYSDATE(), #{d_summary}, #{d_content}
+    FROM doc
+    WHERE d_num = #{d_num}
+	</insert>
+	
     <!-- 문서 삭제  -->
-    <delete id="delete">
-    	delete from doc
-    	where d_num = #{d_num}
-    </delete>
+    <update id="delete">
+   	UPDATE doc
+   	SET d_available = 0	      	
+   	WHERE d_num = #{d_num}
+    </update>
     
     <!-- 문서 검색 -->
     <select id="search" resultType="com.spring.cswiki.dto.DocDTO">
     	SELECT d_title, d_num, d_content FROM doc WHERE d_title like concat('%', #{d_title}, '%')
     	order by d_num desc
+    </select>
+    
+    <!-- 문서 역사  -->
+    <select id="getDocHistory" resultType="com.spring.cswiki.dto.DocHistoryDTO">
+        SELECT d.d_num, d.d_content, dh.d_version, dh.d_date, dh.d_summary
+		FROM doc d
+		JOIN doc_history dh ON d.d_num = dh.d_num
+		WHERE d.d_num = #{d_num} AND d_available = 1;
+    </select>
+    
+    <!-- 버전별 내용 확인 -->
+    <select id="version" resultType="com.spring.cswiki.dto.DocDTO">
+    	SELECT d.d_num, d.d_title, d.p_read, d.p_insert, d.p_update, d.p_delete, dh.d_content, dh.d_version, dh.d_date, dh.d_summary
+		FROM doc d
+		JOIN doc_history dh ON d.d_num = dh.d_num
+		WHERE d.d_num = #{d_num} AND d_available = 1 AND dh.d_version = #{d_version} order by dh.d_version DESC
     </select>
 </mapper>

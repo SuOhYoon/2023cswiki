@@ -9,6 +9,8 @@ public class DocDTO {
 	private int p_delete;
 	private String d_title;
 	private String d_content;
+	private String d_summary;
+	private int d_available;
 	private int next;
 	private int prev;
 	
@@ -60,6 +62,19 @@ public class DocDTO {
 	}
 	public void setD_content(String d_content) {
 		this.d_content = d_content;
+	}
+	public String getD_summary() {
+		return d_summary;
+	}
+	public void setD_summary(String d_summary) {
+		this.d_summary = d_summary;
+	}
+
+	public int getD_available() {
+		return d_available;
+	}
+	public void setD_available(int d_available) {
+		this.d_available = d_available;
 	}
 	public int getNext() {
 		return next;

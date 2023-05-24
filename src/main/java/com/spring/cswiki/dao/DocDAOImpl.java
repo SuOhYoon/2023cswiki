@@ -1,16 +1,18 @@
 package com.spring.cswiki.dao;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.spring.cswiki.dto.BigCategoryVO;
 import com.spring.cswiki.dto.DocDTO;
+import com.spring.cswiki.dto.DocHistoryDTO;
 import com.spring.cswiki.dto.SmallCategoryVO;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
@@ -39,8 +41,8 @@ public class DocDAOImpl implements DocDAO {
 	}
 	
 	@Override
-	public void create(DocDTO dto) {
-		sql.insert(namespace + ".create", dto);		
+	public int create(DocDTO dto) {
+		return sql.insert(namespace + ".create", dto);		
 	}
 
 	@Override
@@ -50,18 +52,45 @@ public class DocDAOImpl implements DocDAO {
 	}
 
 	@Override
-	public void edit(DocDTO dto) {
-		sql.update(namespace+".edit", dto);		
+	public void createDocHistory(DocHistoryDTO dto) {
+		sql.insert(namespace + ".createhistory", dto);
+		
 	}
 
+	@Override
+	public List<DocHistoryDTO> getDocHistory(int d_num) {
+		// TODO Auto-generated method stub
+		List<DocHistoryDTO> historyList = sql.selectList(namespace + ".getDocHistory", d_num);
+		Collections.reverse(historyList);
+		return historyList;
+	}
+	
+	@Override
+	public DocDTO version(int d_num, String d_version) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("d_num", d_num);
+		params.put("d_version", d_version);
+		return sql.selectOne(namespace + ".version", params);
+	}
+	
+	@Override
+	public int edit(DocDTO dto) {
+		return sql.update(namespace + ".edit", dto);		
+	}
+
+	@Override
+	public void editHistory(DocHistoryDTO dto) {
+		sql.insert(namespace + ".edithistory", dto);
+	}
+	
 	@Override
 	public void delete(int d_num) {
-		sql.delete(namespace+".delete", d_num);	
+		sql.update(namespace + ".delete", d_num);	
 	}
-
+	
 	@Override
 	public void acl(DocDTO dto) {
-		sql.update(namespace+".acl", dto);
+		sql.update(namespace + ".acl", dto);
 		
 	}
 
