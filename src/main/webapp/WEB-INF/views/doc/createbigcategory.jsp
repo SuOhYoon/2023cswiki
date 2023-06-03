@@ -14,7 +14,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <meta charset="UTF-8">
-<title>Create</title>
+<title>1단계 분류 추가 - CS위키</title>
 </head>
 <body>
 	<form class="center" method="post">

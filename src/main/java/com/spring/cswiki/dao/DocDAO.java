@@ -6,6 +6,7 @@ import com.spring.cswiki.dto.BigCategoryVO;
 import com.spring.cswiki.dto.DocDTO;
 import com.spring.cswiki.dto.DocHistoryDTO;
 import com.spring.cswiki.dto.SmallCategoryVO;
+import com.spring.cswiki.dto.StarVO;
 
 public interface DocDAO {
 	public List<BigCategoryVO> list(); // 1단계 분류 조회
@@ -24,4 +25,7 @@ public interface DocDAO {
 	public void acl(DocDTO dto); // acl 수정
 	public void aclwipe(DocDTO dto); // acl 삭제
 	public DocDTO search(String d_title); // 문서 검색
+	public int starin(StarVO vo); // 즐겨찾기 등록
+	public int starout(StarVO vo); // 즐겨찾기 삭제
+	public List<DocDTO> userstar(String u_id); // 즐겨찾기 한 문서 목록 조회
 }

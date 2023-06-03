@@ -64,6 +64,17 @@ header{
     color:skyblue;
 }
 
+.hidden {
+	display: none;
+}
+
+#userInfo{
+	position:fixed;
+    left:1640px;
+    width: 178px;
+    height:auto;
+    border: 1px solid #d1d8e4;
+}
 #header-search{
     clear:both;
 }

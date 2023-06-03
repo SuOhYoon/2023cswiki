@@ -39,7 +39,6 @@ public class BoardController {
 	// 게시글 작성
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String postcreate(BoardVO vo, HttpSession session) throws Exception {
-		vo.setU_id((String) session.getAttribute("u_id"));
 		service.create(vo);
 		return "redirect:list";
 	}

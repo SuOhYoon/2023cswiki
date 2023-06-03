@@ -2,11 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
+<%
+	String version = request.getParameter("d_version");
+	int ver = 0;
+	ver = Integer.parseInt(version);
+%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <html lang="ko">
     <head>
         <meta charset="utf-8"/>
-        <title>CS위키</title>
+        <title>${version.d_title}(r<%= ver %>) - CS위키</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?1" />
         <link rel="stylesheet" href="${path}/resources/css/doc.css?5">
         <link rel="stylesheet" href="${path}/resources/css/header.css">
@@ -18,7 +23,7 @@
         <main>
             <div id="doc">
 		        <div class="doc_inner">
-		        <span class="title">${version.d_title}</span>
+		        <span class="title">${version.d_title}(r<%= ver %>)</span>
 		        <div class="selectbox">
 	                <ul>
 	                    <li><a>★</a></li>

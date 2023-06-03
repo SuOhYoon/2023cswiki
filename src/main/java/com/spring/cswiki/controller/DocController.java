@@ -14,6 +14,7 @@ import com.spring.cswiki.dto.BigCategoryVO;
 import com.spring.cswiki.dto.DocDTO;
 import com.spring.cswiki.dto.DocHistoryDTO;
 import com.spring.cswiki.dto.SmallCategoryVO;
+import com.spring.cswiki.dto.StarVO;
 import com.spring.cswiki.service.DocService;
 
 import org.apache.commons.lang3.StringUtils;
@@ -115,7 +116,7 @@ public class DocController {
 	// 1단계 분류 추가 
 	@RequestMapping(value="/createbigcategory", method=RequestMethod.POST)
 	public String postcreatebigcategory(BigCategoryVO vo) throws Exception {
-    	service.createbigcategory(vo);
+       service.createbigcategory(vo);
        return "redirect:list";
     }
 	
@@ -239,5 +240,31 @@ public class DocController {
 		DocDTO version = service.version(d_num, d_version);
 		model.addAttribute("version", version);
     	return "doc/doc_version";  	
+    }
+    
+    // 즐겨찾기 등록
+    @RequestMapping(value="/starcheck")
+    public String starin(Model model, StarVO vo, int d_num, String u_id) {
+    		DocDTO doc = service.doc(d_num);
+        	model.addAttribute("doc", doc);
+        	service.starin(vo);
+        	return "redirect:doc?d_num=" + d_num;
+    }
+    
+    // 즐겨찾기 삭제
+    @RequestMapping(value="/starout")
+    public String starout(Model model, StarVO vo, @RequestParam("d_num")int d_num, @RequestParam("u_id")String u_id) {
+    	service.starout(vo);
+    	model.addAttribute("u_id", u_id);
+    	return "redirect:userstar?";
+    }
+    
+    // 즐겨찾기 목록
+    @RequestMapping(value="/userstar")
+ 	public String userstar(Model model, @RequestParam("u_id") String u_id) throws Exception{
+		List<DocDTO> userstar = service.userstar(u_id);
+		model.addAttribute("userstar", userstar);	
+		model.addAttribute("u_id", u_id);
+		return "doc/userstar";
     }
 }

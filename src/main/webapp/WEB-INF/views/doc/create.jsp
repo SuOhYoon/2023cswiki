@@ -1,12 +1,12 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page session="true" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>새 문서 작성</title>
+	<title>새 문서 작성 - CS위키</title>
 	<script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 	<link rel="stylesheet" href="${path}/resources/css/create.css?3">
 	<link rel="stylesheet" href="${path}/resources/css/header.css">
@@ -21,8 +21,15 @@
 				<c:when test= "${member.p_id eq 0}">
 					차단된 사용자입니다. 현재 편집 권한이 없습니다.
 				</c:when>
+				<c:when test= "${empty member.p_id}">
+					<script type="text/javascript">
+						alert('로그인 후 문서를 작성하실 수 있습니다!');
+						history.back();
+					</script>
+				</c:when>
 				<c:otherwise>
 					<form class="editarea" method="post">
+						<input type="hidden" name="u_id" id="u_id" value="${member.u_id}"/>
 						<input type="text" name="d_title" id="d_title" placeholder="제목을 입력하세요."><br>
 				    	<textarea name="d_content" id="editor"></textarea>
 					    <br>

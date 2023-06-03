@@ -7,14 +7,14 @@
 <html lang="ko">
     <head>
         <meta charset="utf-8"/>
-        <title>CS위키</title>
+        <title>${doc.d_title}(역사) - CS위키</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?1" />
         <link rel="stylesheet" href="${path}/resources/css/doc.css?5">
         <link rel="stylesheet" href="${path}/resources/css/header.css">
         <link rel="stylesheet" href="${path}/resources/css/nav.css">
     </head>
     <body>
-        <%@ include file ="../header.jsp" %>s
+        <%@ include file ="../header.jsp" %>
         <%@ include file ="../nav.jsp" %>
         <main>
             <div id="doc">
@@ -27,7 +27,7 @@
 				            <li>
 				                <fmt:formatDate value="${history.d_date}" pattern="yyyy-MM-dd HH:mm:ss" /> ${history.d_time}
 				                (<a href="${path}/doc/doc_version?d_num=${history.d_num}&d_version=${history.d_version}">보기</a>)
-				                r${history.d_version} (${history.d_summary})
+				                r${history.d_version} ${history.u_id} (${history.d_summary})
 				            </li>
 				        </c:forEach> 
 				    </c:when>
@@ -36,7 +36,7 @@
 				            <li>
 				                <fmt:formatDate value="${history.d_date}" pattern="yyyy-MM-dd HH:mm:ss" /> ${history.d_time}
 				                (<a href="${path}/doc/doc_version?d_num=${history.d_num}&d_version=${history.d_version}">보기</a>)
-				                r${history.d_version} (${history.d_summary})
+				                r${history.d_version} ${history.u_id} (${history.d_summary})
 				            </li>
 				        </c:forEach> 
 				    </c:when>

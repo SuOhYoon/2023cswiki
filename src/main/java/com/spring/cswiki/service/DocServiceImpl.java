@@ -8,6 +8,7 @@ import com.spring.cswiki.dto.BigCategoryVO;
 import com.spring.cswiki.dto.DocDTO;
 import com.spring.cswiki.dto.DocHistoryDTO;
 import com.spring.cswiki.dto.SmallCategoryVO;
+import com.spring.cswiki.dto.StarVO;
 
 import javax.inject.Inject;
 
@@ -45,6 +46,7 @@ public class DocServiceImpl implements DocService {
 			DocHistoryDTO dh = new DocHistoryDTO();
 			dh.setD_num(dto.getD_num());
 			dh.setD_version(1);
+			dh.setU_id(dto.getU_id());
 			dh.setD_summary("새 문서");
 			dh.setD_content(dto.getD_content());
 			dao.createDocHistory(dh);
@@ -64,6 +66,7 @@ public class DocServiceImpl implements DocService {
 	    if(result > 0) {
 	        DocHistoryDTO dh = new DocHistoryDTO();
 	        dh.setD_num(dto.getD_num()); // d_num 값을 설정해줘야 함
+	        dh.setU_id(dto.getU_id());
 	        dh.setD_summary(dto.getD_summary());
 	        dh.setD_content(dto.getD_content());
 	        dao.editHistory(dh);
@@ -111,5 +114,23 @@ public class DocServiceImpl implements DocService {
 	@Override
 	public DocDTO version(int d_num, String d_version) {
 		return dao.version(d_num, d_version);
+	}
+
+	@Override
+	public int starin(StarVO vo) {
+		// TODO Auto-generated method stub
+		return dao.starin(vo);
+	}
+
+	@Override
+	public List<DocDTO> userstar(String u_id) {
+		// TODO Auto-generated method stub
+		return dao.userstar(u_id);
+	}
+
+	@Override
+	public int starout(StarVO vo) {
+		// TODO Auto-generated method stub
+		return dao.starout(vo);
 	}
 }

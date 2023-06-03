@@ -2,11 +2,9 @@ package com.spring.cswiki.service;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
 import com.spring.cswiki.dao.MemberDAO;
-import com.spring.cswiki.dto.DocDTO;
 import com.spring.cswiki.dto.MemberDTO;
 
 @Service 
@@ -20,8 +18,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberDTO login(MemberDTO dto) throws Exception {
-		return dao.login(dto);
+	public MemberDTO login(String u_id){
+		return dao.login(u_id);
 	}
 
 	@Override

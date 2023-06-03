@@ -46,25 +46,25 @@ public class MemberController {
     
     // 로그인 처리, 값이 일치하면 로그인 수행 후 메인 페이지로 이동, 일치하지 않으면 다시 로그인 페이지로 이동
     @RequestMapping(value="/loginProcess", method = RequestMethod.POST)
-    public String login(MemberDTO dto, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
-        LOG.info("post login");
+    public String login(String u_id, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
+    	LOG.info("post login");
         
         HttpSession session = req.getSession();
-        MemberDTO login = service.login(dto);
-                
-        if(login == null) {
+        MemberDTO login = service.login(u_id);
+        
+        if (login == null) {
             session.setAttribute("member", null);
             session.setAttribute("p_id", null);
             rttr.addFlashAttribute("msg", false);
             LOG.info("로그인 실패......");
-            return "member/login";
+            return "redirect:/member/login";
         } else {
             LOG.info("로그인 성공!");
             session.setAttribute("member", login);
-            session.setAttribute("p_id", login);
+            session.setAttribute("p_id", login.getP_id());
 
             String referer = req.getHeader("Referer");
-            if (referer != null && !referer.contains("login")) {
+            if (referer != null && !referer.contains("/member/login")) {
                 session.setAttribute("prevPage", referer);
                 return "redirect:" + referer;
             } else {

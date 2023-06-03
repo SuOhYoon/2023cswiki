@@ -6,22 +6,40 @@
 <html lang="ko">
     <head>
         <meta charset="utf-8"/>
-        <title>CS위키</title>
+        <title>${doc.d_title} - CS위키</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?1" />
         <link rel="stylesheet" href="${path}/resources/css/doc.css?5">
-        <link rel="stylesheet" href="${path}/resources/css/header.css">
+        <link rel="stylesheet" href="${path}/resources/css/header.css?2">
         <link rel="stylesheet" href="${path}/resources/css/nav.css">
+        <style>
+		    .skyblue {
+		      color: skyblue;
+		    }
+	    </style>
     </head>
     <body>
         <%@ include file ="../header.jsp" %>
         <%@ include file ="../nav.jsp" %>
         <main>
+        	<script>
+			 document.getElementById("searchBtn").onclick = function () {
+				 let keyword =  document.getElementsByName("title")[0].value;
+				 console.log(title)
+				 location.href = "/doc/search" + "&title=" + title;
+			 };
+			</script>
+			<script>
+			    function toggleUserInfo() {
+			      var userInfo = document.getElementById("userInfo");
+			      userInfo.classList.toggle("hidden");
+			    }
+			</script>
             <div id="doc">
 		        <div class="doc_inner">
 		        <span class="title">${doc.d_title}</span>
 		        <div class="selectbox">
 	                <ul>
-	                    <li><a>★</a></li>
+               			<li><a href="${path}/doc/starcheck?d_num=${doc.d_num}&u_id=${member.u_id}" id="star"style="cursor:pointer;">★</a></li>
 	                    <li>
 						    <a href="${path}/doc/edit?d_num=${doc.d_num}">편집</a>
 	                    </li>

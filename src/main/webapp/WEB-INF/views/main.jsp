@@ -9,7 +9,7 @@
         <title>CS위키</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?1" />
         <link rel="stylesheet" href="${path}/resources/css/main.css?5">
-        <link rel="stylesheet" href="${path}/resources/css/header.css">
+        <link rel="stylesheet" href="${path}/resources/css/header.css?2">
         <link rel="stylesheet" href="${path}/resources/css/nav.css">
     </head>
     <body>
@@ -19,6 +19,12 @@
 			 console.log(title)
 			 location.href = "/doc/search" + "&title=" + title;
 		 };
+		</script>
+		<script>
+		    function toggleUserInfo() {
+		      var userInfo = document.getElementById("userInfo");
+		      userInfo.classList.toggle("hidden");
+		    }
 		</script>
         <%@ include file ="header.jsp" %>
         <%@ include file ="nav.jsp" %>

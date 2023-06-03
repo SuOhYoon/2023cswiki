@@ -16,8 +16,8 @@ import com.spring.cswiki.dto.MemberDTO;
 	SqlSession sql; // SqlSession 의존관계 주입
 	
 	@Override
-	public MemberDTO login(MemberDTO dto) throws Exception { 
-		return sql.selectOne(namespace + ".login", dto);
+	public MemberDTO login(String u_id) { 
+		return sql.selectOne(namespace + ".login", u_id);
 	}
 
 	@Override

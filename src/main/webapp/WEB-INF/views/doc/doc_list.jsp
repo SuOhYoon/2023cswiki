@@ -6,7 +6,7 @@
 <html lang="ko">
     <head>
         <meta charset="utf-8"/>
-        <title>CS위키</title>
+        <title>문서 목록 - CS위키</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?1" />
         <link rel="stylesheet" href="${path}/resources/css/doc_list.css?3">
         <link rel="stylesheet" href="${path}/resources/css/header.css">

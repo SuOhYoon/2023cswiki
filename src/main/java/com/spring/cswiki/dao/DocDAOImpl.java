@@ -9,6 +9,7 @@ import com.spring.cswiki.dto.BigCategoryVO;
 import com.spring.cswiki.dto.DocDTO;
 import com.spring.cswiki.dto.DocHistoryDTO;
 import com.spring.cswiki.dto.SmallCategoryVO;
+import com.spring.cswiki.dto.StarVO;
 
 import javax.inject.Inject;
 
@@ -113,5 +114,20 @@ public class DocDAOImpl implements DocDAO {
 	@Override
 	public void createsmallcategory(SmallCategoryVO vo) {
 		sql.insert(namespace + ".createsmallcategory", vo);	
+	}
+
+	@Override
+	public int starin(StarVO vo) {
+		return sql.insert(namespace + ".starin", vo);
+	}
+
+	@Override
+	public List<DocDTO> userstar(String u_id) {
+		return sql.selectList(namespace + ".userstar", u_id);
+	}
+
+	@Override
+	public int starout(StarVO vo) {
+		return sql.delete(namespace + ".starout", vo);
 	}
 }

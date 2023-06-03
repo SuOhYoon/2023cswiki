@@ -68,9 +68,9 @@
 		<hr>
 		<h4>댓글 작성</h4>
 		<form name="commentw" method="post">
+			<input type="hidden" name="u_id" id="u_id" value="${member.u_id}"/>
 			<input type="hidden" id="bl_num" name="bl_num" value="${data.bl_num}" />
 			<div>
-				<label for="u_id">댓글 작성자</label><input type="text" id="u_id" name="u_id" />
 				<label for="cm_content">댓글 내용</label><input type="text" id="cm_content" name="cm_content" />
 			</div>
 			<div>

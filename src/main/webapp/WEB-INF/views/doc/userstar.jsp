@@ -6,11 +6,9 @@
 <html lang="ko">
     <head>
         <meta charset="utf-8"/>
-        <title>CS위키</title>
+        <title>내 문서함 - CS위키</title>
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?1" />
-        <link rel="stylesheet" href="${path}/resources/css/doc_list.css?6">
-        <link rel="stylesheet" href="${path}/resources/css/header.css">
-        <link rel="stylesheet" href="${path}/resources/css/nav.css">
+        <link rel="stylesheet" href="${path}/resources/css/doc_list.css?3">
         <link rel="stylesheet" href="${path}/resources/css/header.css">
         <link rel="stylesheet" href="${path}/resources/css/nav.css">
     </head>
@@ -20,19 +18,13 @@
         <main>
             <div id="list">
         		<div class="list_inner">
-            		<h2>분류 편집<h2>
-	            		<ul>
-						    <c:forEach items="${bigCategoryVOs}" var="bigCategoryVO">
-						      	<li>
-						        	<a href="#">${bigCategoryVO.b_ca_name}</a>
-							        <ul>
-								        <c:forEach items="${docService.getSmallCategoriesByBigCategoryNum(bigCategoryVO.b_ca_num)}" var="smallCategoryVO">
-								          <li>${smallCategoryVO.s_ca_name}</li>
-								        </c:forEach>
-							        </ul>
-								</li>
-						  	</c:forEach>
-						</ul>    
+            	<h2>내 문서함<h2>
+            		<div class="selectbox">
+            			<c:forEach items="${userstar}" var="userstar">
+                		<ul>
+                    		<li><a href="${path}/doc/doc?d_num=${userstar.d_num}">${userstar.d_title}</a>(<a href="${path}/doc/starout?d_num=${userstar.d_num}&u_id=${member.u_id}">삭제</a>)</li>
+                		</ul> 
+                		</c:forEach>         
             		</div>
         		</div>
     		</div>
@@ -52,8 +44,5 @@
         <span class="text">All Rights Reserved.</span>
     </div>
     </footer>
-    <script>
-
-    </script>
     </body>
 </html>

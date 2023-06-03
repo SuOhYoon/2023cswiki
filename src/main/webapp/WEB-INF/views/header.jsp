@@ -8,7 +8,15 @@
 		    <c:choose>
 				<c:when test="${not empty sessionScope.member}">
 					<div>
-						<span>${member.name}님 환영합니다.</span>
+						<span onclick="toggleUserInfo()">${member.name}님 환영합니다.</span>
+						<div id="userInfo" class="hidden">
+							사용자:${member.name}
+							<hr>
+							<ul>
+								<li>내 정보 확인/수정</li>
+								<li><a href="${path}/doc/userstar?u_id=${member.u_id}">내 문서함</a></li>
+							</ul>
+						</div>
 					</div>
 				</c:when>
 				<c:otherwise>

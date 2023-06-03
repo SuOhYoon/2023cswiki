@@ -10,6 +10,7 @@ public class DocDTO {
 	private String d_title;
 	private String d_content;
 	private String d_summary;
+	private String u_id;
 	private int d_available;
 	private int next;
 	private int prev;
@@ -87,5 +88,11 @@ public class DocDTO {
 	}
 	public void setPrev(int prev) {
 		this.prev = prev;
+	}
+	public String getU_id() {
+		return u_id;
+	}
+	public void setU_id(String u_id) {
+		this.u_id = u_id;
 	}
 }

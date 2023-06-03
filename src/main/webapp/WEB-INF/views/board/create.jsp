@@ -19,6 +19,7 @@
 <body>
 	<form class="center" method="post">
 		<h2>Create Page</h2>
+		<input type="hidden" name="u_id" id="u_id" value="${member.u_id}"/>
 		<div class="form-group">
 			<label>b_title</label> <input type="text" class="form-control"
 				name="b_title" placeholder="제목">
